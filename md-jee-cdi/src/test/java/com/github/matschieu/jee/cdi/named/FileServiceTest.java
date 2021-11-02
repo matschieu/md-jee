@@ -10,10 +10,6 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.github.matschieu.jee.cdi.named.FileService;
-import com.github.matschieu.jee.cdi.named.JavaFileService;
-import com.github.matschieu.jee.cdi.named.TextFileService;
-
 public class FileServiceTest {
 
     @Rule

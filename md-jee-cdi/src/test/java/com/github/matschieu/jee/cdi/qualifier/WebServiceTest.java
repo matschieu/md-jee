@@ -10,12 +10,6 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.github.matschieu.jee.cdi.qualifier.RestService;
-import com.github.matschieu.jee.cdi.qualifier.RestWebService;
-import com.github.matschieu.jee.cdi.qualifier.SoapService;
-import com.github.matschieu.jee.cdi.qualifier.SoapWebService;
-import com.github.matschieu.jee.cdi.qualifier.WebService;
-
 public class WebServiceTest {
 
     @Rule

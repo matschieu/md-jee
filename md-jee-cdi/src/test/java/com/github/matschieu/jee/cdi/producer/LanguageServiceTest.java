@@ -9,9 +9,6 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.github.matschieu.jee.cdi.producer.LanguageService;
-import com.github.matschieu.jee.cdi.producer.LanguageServiceFactory;
-
 public class LanguageServiceTest {
 
     @Rule

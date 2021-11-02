@@ -9,10 +9,6 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.github.matschieu.jee.cdi.dfault.EnglishHelloService;
-import com.github.matschieu.jee.cdi.dfault.FrenchHelloService;
-import com.github.matschieu.jee.cdi.dfault.HelloService;
-
 public class HelloServiceTest {
 
     @Rule
