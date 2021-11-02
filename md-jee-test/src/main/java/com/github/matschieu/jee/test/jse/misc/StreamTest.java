@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class StreamTest {
 
-	public void test1() {
+	public static void main(String[] args) {
 		new ArrayList<String>(Arrays.asList("bibi", "toto", "titi")).stream()
 				.filter(val -> val.contains("i"))
 				.forEach(System.out::println);

@@ -1,0 +1,15 @@
+#!/usr/bin/java --source 11
+
+/**
+ *
+ * Remove the .java extension of the file
+ * Set execution right by using chmod 700 on this file
+ * Run it with ./JavaScriptTest
+ *
+ */
+public class JavaScriptTest {
+
+	public static void main(String[] args) {
+		System.out.println("Hello world in Java script");
+	}
+}
