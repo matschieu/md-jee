@@ -11,8 +11,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>md-jee-test</artifactId>
-	<name>md-jee-test</name>
+	<artifactId>md-jee-java-tests</artifactId>
+	<name>md-jee-java-tests</name>
 
 	<dependencies>
 		<dependency>

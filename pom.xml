@@ -13,7 +13,7 @@
 	<modules>
 		<module>md-jee-cdi</module>
 		<module>md-jee-ejb</module>
-		<module>md-jee-test</module>
+		<module>md-jee-java-tests</module>
 	</modules>
 
 	<properties>
