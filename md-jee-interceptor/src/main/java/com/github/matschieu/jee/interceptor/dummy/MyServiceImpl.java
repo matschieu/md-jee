@@ -5,11 +5,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Default;
 import javax.interceptor.Interceptors;
 
-import com.github.matschieu.jee.interceptor.dummy.IntIncrementInterceptor;
-
 @Default
 @ApplicationScoped
-@Interceptors(StringDecoratorInterceptor.class)
+@Interceptors({StringDecorator1Interceptor.class, StringDecorator2Interceptor.class})
 public class MyServiceImpl implements MyService {
 
 	@PostConstruct

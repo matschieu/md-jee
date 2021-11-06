@@ -5,7 +5,7 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
 @Interceptor
-public class StringDecoratorInterceptor {
+public class StringDecorator1Interceptor {
 
 	@AroundInvoke
 	public Object interceptOrder(InvocationContext ctx) throws Exception {
