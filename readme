@@ -1,0 +1,15 @@
+JEE specifications
+https://jakarta.ee/specifications/platform/
+
+CDI
+https://www.baeldung.com/java-ee-cdi
+http://weld.cdi-spec.org/documentation/
+http://www.mastertheboss.com/jboss-frameworks/cdi/building-a-cdi-2-standalone-java-application/
+https://github.com/weld/weld-junit/blob/master/junit4/README.md
+https://stackoverflow.com/questions/27622822/is-there-any-way-to-ask-weld-se-to-inject-a-specific-implementation-at-a-given-t
+https://docs.jboss.org/weld/reference/latest/en-US/html/contexts.html
+
+Arquillian
+https://www.baeldung.com/arquillian
+https://arquillian.org/guides/getting_started/
+https://itnext.io/testing-jakarta-ee-9-applications-with-arquillian-and-glassfish-v6-9981e454e6eb
