@@ -7,12 +7,11 @@ import javax.interceptor.Interceptors;
 
 @Default
 @ApplicationScoped
-@Interceptors({StringDecorator1Interceptor.class, StringDecorator2Interceptor.class})
+@Interceptors({ StringDecorator1Interceptor.class, StringDecorator2Interceptor.class })
 public class MyServiceImpl implements MyService {
 
 	@PostConstruct
-	public void init() {
-	}
+	public void init() {}
 
 	@Interceptors(IntIncrementInterceptor.class)
 	@Override
@@ -37,7 +36,6 @@ public class MyServiceImpl implements MyService {
 	}
 
 	@Override
-	public void doNothing() {
-	}
+	public void doNothing() {}
 
 }

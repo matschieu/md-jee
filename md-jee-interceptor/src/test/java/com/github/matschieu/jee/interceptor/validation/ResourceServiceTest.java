@@ -11,52 +11,52 @@ import org.junit.Test;
 
 public class ResourceServiceTest {
 
-    @Rule
-    public WeldInitiator weld = WeldInitiator.from(ResourceService.class, ResourceServiceImpl.class).activate().inject(this).build();
+	@Rule
+	public WeldInitiator weld = WeldInitiator.from(ResourceService.class, ResourceServiceImpl.class).activate().inject(this).build();
 
-    @Inject
-    private ResourceService resourceService;
+	@Inject
+	private ResourceService resourceService;
 
 	@Test
 	public void testMyServiceCreateResource1() {
 		try {
-			resourceService.createResource(null, "", "");
+			this.resourceService.createResource(null, "", "");
 			fail();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Assert.assertEquals(NullElementException.class, e.getClass());
 			Assert.assertEquals("arg0 is null", e.getMessage());
 		}
 
 		try {
-			resourceService.createResource("", null, "");
+			this.resourceService.createResource("", null, "");
 			fail();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Assert.assertEquals(NullElementException.class, e.getClass());
 			Assert.assertEquals("arg1 is null", e.getMessage());
 		}
 
-		resourceService.createResource("", "", null);
+		this.resourceService.createResource("", "", null);
 	}
 
 	@Test
 	public void testMyServiceCreateResource2() {
 		try {
-			resourceService.createResource(new Resource(null, "", ""));
+			this.resourceService.createResource(new Resource(null, "", ""));
 			fail();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Assert.assertEquals(NullElementException.class, e.getClass());
 			Assert.assertEquals("name is null", e.getMessage());
 		}
 
 		try {
-			resourceService.createResource(new Resource("", null, ""));
+			this.resourceService.createResource(new Resource("", null, ""));
 			fail();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Assert.assertEquals(NullElementException.class, e.getClass());
 			Assert.assertEquals("type is null", e.getMessage());
 		}
 
-		resourceService.createResource(new Resource("", "", null));
+		this.resourceService.createResource(new Resource("", "", null));
 	}
 
 	@Test
@@ -64,14 +64,14 @@ public class ResourceServiceTest {
 		Resource resource;
 
 		try {
-			resource = resourceService.getResource(null);
+			resource = this.resourceService.getResource(null);
 			fail();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Assert.assertEquals(NullElementException.class, e.getClass());
 			Assert.assertEquals("arg0 is null", e.getMessage());
 		}
 
-		resource = resourceService.getResource("name");
+		resource = this.resourceService.getResource("name");
 
 		Assert.assertNotNull(resource);
 		Assert.assertEquals("name", resource.getName());
@@ -82,14 +82,14 @@ public class ResourceServiceTest {
 	@Test
 	public void testMyServiceDeleteResource() {
 		try {
-			resourceService.deleteResource(null);
+			this.resourceService.deleteResource(null);
 			fail();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Assert.assertEquals(NullElementException.class, e.getClass());
 			Assert.assertEquals("arg0 is null", e.getMessage());
 		}
 
-		resourceService.getResource("name");
+		this.resourceService.getResource("name");
 	}
 
 }

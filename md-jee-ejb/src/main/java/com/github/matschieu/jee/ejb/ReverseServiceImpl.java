@@ -16,19 +16,19 @@ public class ReverseServiceImpl implements ReverseService {
 	}
 
 	@Override
-	public String reverseString(String str) {
+	public String reverseString(final String str) {
 		if (str != null) {
-			StringBuilder strb = new StringBuilder();
-			for (int i = str.length() - 1 ; i >= 0; i--) {
+			final StringBuilder strb = new StringBuilder();
+			for (int i = str.length() - 1; i >= 0; i--) {
 				strb.append(str.charAt(i));
 			}
 
-			messageService.displayMessage(strb.toString());
+			this.messageService.displayMessage(strb.toString());
 
 			return strb.toString();
 		}
 
-		messageService.displayMessage(null);
+		this.messageService.displayMessage(null);
 
 		return null;
 	}

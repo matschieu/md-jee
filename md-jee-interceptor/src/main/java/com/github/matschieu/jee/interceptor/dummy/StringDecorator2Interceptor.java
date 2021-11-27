@@ -8,9 +8,9 @@ import javax.interceptor.InvocationContext;
 public class StringDecorator2Interceptor {
 
 	@AroundInvoke
-	public Object interceptOrder(InvocationContext ctx) throws Exception {
+	public Object interceptOrder(final InvocationContext ctx) throws Exception {
 		System.out.println(this.getClass().getSimpleName() + ": Intercept " + ctx.getMethod().getName());
-		Object output = ctx.proceed();
+		final Object output = ctx.proceed();
 		if (output instanceof String) {
 			return "[" + output + "]";
 		}

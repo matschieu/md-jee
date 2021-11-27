@@ -12,21 +12,21 @@ import org.junit.Test;
 
 public class FileServiceTest {
 
-    @Rule
-    public WeldInitiator weld = WeldInitiator.from(TextFileService.class, JavaFileService.class).activate().inject(this).build();
+	@Rule
+	public WeldInitiator weld = WeldInitiator.from(TextFileService.class, JavaFileService.class).activate().inject(this).build();
 
-    @Inject
-    private @Named("JavaFileService") FileService javaFileService;
+	@Inject
+	private @Named("JavaFileService") FileService javaFileService;
 
-    @Inject
-    private @Named("TextFileService") FileService textFileService;
+	@Inject
+	private @Named("TextFileService") FileService textFileService;
 
 	@Test
 	public void testWithContainer() {
-		Weld weld = new Weld();
-		WeldContainer container = weld.initialize();
-		FileService javaFileService = container.select(FileService.class, new org.jboss.weld.literal.NamedLiteral("JavaFileService")).get();
-		FileService textFileService = container.select(FileService.class, new org.jboss.weld.literal.NamedLiteral("TextFileService")).get();
+		final Weld weld = new Weld();
+		final WeldContainer container = weld.initialize();
+		final FileService javaFileService = container.select(FileService.class, new org.jboss.weld.literal.NamedLiteral("JavaFileService")).get();
+		final FileService textFileService = container.select(FileService.class, new org.jboss.weld.literal.NamedLiteral("TextFileService")).get();
 
 		Assert.assertEquals(".java", javaFileService.getFileExtension());
 		Assert.assertEquals(".txt", textFileService.getFileExtension());

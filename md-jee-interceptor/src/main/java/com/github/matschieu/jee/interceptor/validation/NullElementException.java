@@ -6,7 +6,7 @@ public class NullElementException extends Exception {
 		super();
 	}
 
-	public NullElementException(String message) {
+	public NullElementException(final String message) {
 		super(message);
 	}
 }

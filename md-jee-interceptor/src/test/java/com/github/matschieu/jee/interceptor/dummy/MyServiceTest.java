@@ -9,17 +9,17 @@ import org.junit.Test;
 
 public class MyServiceTest {
 
-    @Rule
-    public WeldInitiator weld = WeldInitiator.from(MyService.class, MyServiceImpl.class).activate().inject(this).build();
+	@Rule
+	public WeldInitiator weld = WeldInitiator.from(MyService.class, MyServiceImpl.class).activate().inject(this).build();
 
-    @Inject
-    private MyService myService;
+	@Inject
+	private MyService myService;
 
 	@Test
 	public void testMyService() {
-		Assert.assertEquals(2, myService.getInt());
-		Assert.assertEquals(Integer.valueOf(2), myService.getInteger());
-		Assert.assertEquals("{[MyString]}", myService.getString());
-		Assert.assertEquals("{[MyOtherString]}", myService.getOtherString());
+		Assert.assertEquals(2, this.myService.getInt());
+		Assert.assertEquals(Integer.valueOf(2), this.myService.getInteger());
+		Assert.assertEquals("{[MyString]}", this.myService.getString());
+		Assert.assertEquals("{[MyOtherString]}", this.myService.getOtherString());
 	}
 }

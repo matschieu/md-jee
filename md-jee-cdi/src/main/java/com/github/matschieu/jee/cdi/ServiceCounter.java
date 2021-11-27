@@ -5,11 +5,11 @@ import java.util.Map;
 
 public final class ServiceCounter {
 
-	private static Map<Class<?>, Integer> counters = new HashMap<Class<?>, Integer>();
+	private static Map<Class<?>, Integer> counters = new HashMap<>();
 
-	private ServiceCounter() { }
+	private ServiceCounter() {}
 
-	public static final void register(Class<?> clazz) {
+	public static final void register(final Class<?> clazz) {
 		int count = 1;
 
 		if (!counters.containsKey(clazz)) {

@@ -11,17 +11,17 @@ import org.junit.Test;
 
 public class HelloServiceTest {
 
-    @Rule
-    public WeldInitiator weld = WeldInitiator.from(FrenchHelloService.class, EnglishHelloService.class).activate().inject(this).build();
+	@Rule
+	public WeldInitiator weld = WeldInitiator.from(FrenchHelloService.class, EnglishHelloService.class).activate().inject(this).build();
 
-    @Inject
-    private HelloService helloService;
+	@Inject
+	private HelloService helloService;
 
 	@Test
 	public void testWithContainer() {
-		Weld weld = new Weld();
-		WeldContainer container = weld.initialize();
-		HelloService helloService = container.select(HelloService.class).get();
+		final Weld weld = new Weld();
+		final WeldContainer container = weld.initialize();
+		final HelloService helloService = container.select(HelloService.class).get();
 
 		Assert.assertEquals("Bonjour", helloService.sayHello());
 

@@ -12,24 +12,24 @@ import org.junit.Test;
 
 public class WebServiceTest {
 
-    @Rule
-    public WeldInitiator weld = WeldInitiator.from(RestWebService.class, SoapWebService.class).activate().inject(this).build();
+	@Rule
+	public WeldInitiator weld = WeldInitiator.from(RestWebService.class, SoapWebService.class).activate().inject(this).build();
 
-    @Inject
-    @RestService
-    private WebService restWebService;
+	@Inject
+	@RestService
+	private WebService restWebService;
 
-    @Inject
-    @SoapService
-    private WebService soapWebService;
+	@Inject
+	@SoapService
+	private WebService soapWebService;
 
 	@Test
 	@SuppressWarnings("serial")
 	public void testWithContainer() {
-		Weld weld = new Weld();
-		WeldContainer container = weld.initialize();
-		WebService restWebService = container.select(WebService.class, new AnnotationLiteral<RestService>() {}).get();
-		WebService soapWebService = container.select(WebService.class, new AnnotationLiteral<SoapService>() {}).get();
+		final Weld weld = new Weld();
+		final WeldContainer container = weld.initialize();
+		final WebService restWebService = container.select(WebService.class, new AnnotationLiteral<RestService>() {}).get();
+		final WebService soapWebService = container.select(WebService.class, new AnnotationLiteral<SoapService>() {}).get();
 
 		Assert.assertEquals("Rest", restWebService.getType());
 		Assert.assertEquals("Soap", soapWebService.getType());
@@ -39,7 +39,7 @@ public class WebServiceTest {
 
 	@Test
 	public void testWithAnnotation() {
-		Assert.assertEquals("Rest", restWebService.getType());
-		Assert.assertEquals("Soap", soapWebService.getType());
+		Assert.assertEquals("Rest", this.restWebService.getType());
+		Assert.assertEquals("Soap", this.soapWebService.getType());
 	}
 }

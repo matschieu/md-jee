@@ -10,45 +10,45 @@ public class Resource {
 
 	private String description;
 
-	public Resource() { }
+	public Resource() {}
 
-	public Resource(String name, String type, String description) {
+	public Resource(final String name, final String type, final String description) {
 		this.name = name;
 		this.type = type;
 		this.description = description;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
 	public String getType() {
-		return type;
+		return this.type;
 	}
 
-	public void setType(String type) {
+	public void setType(final String type) {
 		this.type = type;
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder strb = new StringBuilder();
+		final StringBuilder strb = new StringBuilder();
 		strb.append("Resource[");
-		strb.append("name = ").append(name);
-		strb.append(", type = ").append(type);
-		strb.append(", description = ").append(description);
+		strb.append("name = ").append(this.name);
+		strb.append(", type = ").append(this.type);
+		strb.append(", description = ").append(this.description);
 		strb.append("]");
 		return strb.toString();
 	}
