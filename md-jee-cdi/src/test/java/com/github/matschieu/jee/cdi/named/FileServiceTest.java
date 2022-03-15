@@ -3,17 +3,12 @@ package com.github.matschieu.jee.cdi.named;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.weld.environment.se.Weld;
-import org.jboss.weld.environment.se.WeldContainer;
-import org.jboss.weld.junit4.WeldInitiator;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
 
-public class FileServiceTest {
+import com.github.matschieu.jee.cdi.WeldTest;
 
-	@Rule
-	public WeldInitiator weld = WeldInitiator.from(TextFileService.class, JavaFileService.class).activate().inject(this).build();
+public class FileServiceTest extends WeldTest {
 
 	@Inject
 	private @Named("JavaFileService") FileService javaFileService;
@@ -23,15 +18,15 @@ public class FileServiceTest {
 
 	@Test
 	public void testWithContainer() {
-		final Weld weld = new Weld();
-		final WeldContainer container = weld.initialize();
-		final FileService javaFileService = container.select(FileService.class, new org.jboss.weld.literal.NamedLiteral("JavaFileService")).get();
-		final FileService textFileService = container.select(FileService.class, new org.jboss.weld.literal.NamedLiteral("TextFileService")).get();
+		this.initContainer();
+
+		final FileService javaFileService = this.getContainer().select(FileService.class, new org.jboss.weld.literal.NamedLiteral("JavaFileService")).get();
+		final FileService textFileService = this.getContainer().select(FileService.class, new org.jboss.weld.literal.NamedLiteral("TextFileService")).get();
 
 		Assert.assertEquals(".java", javaFileService.getFileExtension());
 		Assert.assertEquals(".txt", textFileService.getFileExtension());
 
-		container.shutdown();
+		this.shutdownContainer();
 	}
 
 	@Test

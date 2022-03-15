@@ -2,30 +2,25 @@ package com.github.matschieu.jee.cdi.producer;
 
 import javax.inject.Inject;
 
-import org.jboss.weld.environment.se.Weld;
-import org.jboss.weld.environment.se.WeldContainer;
-import org.jboss.weld.junit4.WeldInitiator;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
 
-public class LanguageServiceTest {
+import com.github.matschieu.jee.cdi.WeldTest;
 
-	@Rule
-	public WeldInitiator weld = WeldInitiator.from(LanguageServiceFactory.class).activate().inject(this).build();
+public class LanguageServiceTest extends WeldTest {
 
 	@Inject
 	private LanguageService languageService;
 
 	@Test
 	public void testWithContainer() {
-		final Weld weld = new Weld();
-		final WeldContainer container = weld.initialize();
-		final LanguageService languageService = container.select(LanguageService.class).get();
+		this.initContainer();
+
+		final LanguageService languageService = this.getContainer().select(LanguageService.class).get();
 
 		Assert.assertEquals("Java", languageService.getName());
 
-		container.shutdown();
+		this.shutdownContainer();
 	}
 
 	@Test
