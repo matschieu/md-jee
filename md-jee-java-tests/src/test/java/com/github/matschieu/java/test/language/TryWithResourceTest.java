@@ -1,11 +1,12 @@
 package com.github.matschieu.java.test.language;
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.Closeable;
 import java.io.IOException;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 enum Status {
 	OPENED, CLOSED;
@@ -37,11 +38,11 @@ public class TryWithResourceTest {
 		final StatusHolder statusHolder = new StatusHolder();
 
 		try(MyResource myResource = new MyResource(statusHolder)) {
-			Assert.assertEquals(Status.OPENED, statusHolder.status);
+			Assertions.assertEquals(Status.OPENED, statusHolder.status);
 		} catch (final IOException e) {
 			fail();
 		} finally {
-			Assert.assertEquals(Status.CLOSED, statusHolder.status);
+			Assertions.assertEquals(Status.CLOSED, statusHolder.status);
 		}
 	}
 

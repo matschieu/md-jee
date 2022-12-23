@@ -1,7 +1,9 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CastTest {
 
@@ -10,16 +12,19 @@ public class CastTest {
 		final String str = null;
 		final Object obj = str;
 
-		Assert.assertEquals(1, (int)1.625);
-		Assert.assertNull((String)obj);
-		Assert.assertNull((Integer)obj);
+		Assertions.assertEquals(1, (int)1.625);
+		Assertions.assertNull(obj);
+		Assertions.assertNull(obj);
 	}
-	
-	@Test(expected = ClassCastException.class)
-	public void testBadCast() {
-		String str = "";
-		Object obj = str;
-		Assert.assertNull((Integer)obj);		
+
+	@ParameterizedTest
+	@ValueSource(strings = {"toto"})
+	public void testBadCast(Object o) {
+		Assertions.assertThrows(ClassCastException.class, () -> {
+			@SuppressWarnings("unused")
+			Integer i = (Integer)o;
+		});
+
 	}
 
 }

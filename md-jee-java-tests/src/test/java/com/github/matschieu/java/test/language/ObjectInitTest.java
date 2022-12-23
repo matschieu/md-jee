@@ -3,7 +3,7 @@ package com.github.matschieu.java.test.language;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 
 public class ObjectInitTest {
@@ -27,8 +27,8 @@ public class ObjectInitTest {
 			str = "toto";
 		}};
 
-		Assert.assertEquals(3, objectInit.getNumber());
-		Assert.assertEquals("toto", objectInit.str);
+		Assertions.assertEquals(3, objectInit.getNumber());
+		Assertions.assertEquals("toto", objectInit.str);
 
 	}
 
@@ -41,7 +41,7 @@ public class ObjectInitTest {
 			add("tata");
 		}};
 
-		Assert.assertEquals(3, list.size());
+		Assertions.assertEquals(3, list.size());
 	}
 
 }

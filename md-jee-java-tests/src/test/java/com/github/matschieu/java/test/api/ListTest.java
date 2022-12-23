@@ -2,8 +2,8 @@ package com.github.matschieu.java.test.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ListTest {
 
@@ -20,7 +20,7 @@ public class ListTest {
 		str = "3";
 		list.add(str);
 
-		Assert.assertEquals(3, list.size());
+		Assertions.assertEquals(3, list.size());
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class ListTest {
 		list.add(null);
 		list.add("titi");
 
-		Assert.assertEquals(3, list.size());
+		Assertions.assertEquals(3, list.size());
 	}
 
 	class MyBean {
@@ -60,14 +60,14 @@ public class ListTest {
 
 		final List<MyBean> list2 = new ArrayList<MyBean>(list1);
 
-		Assert.assertEquals(20, list2.size());
+		Assertions.assertEquals(20, list2.size());
 
 		for (int i = 0; i < 15; i++) {
 			list2.remove(list1.get(i));
 		}
 
-		Assert.assertEquals(20, list1.size());
-		Assert.assertEquals(5, list2.size());
+		Assertions.assertEquals(20, list1.size());
+		Assertions.assertEquals(5, list2.size());
 	}
 
 }

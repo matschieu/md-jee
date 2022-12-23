@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class EnumTest {
 
@@ -9,33 +9,33 @@ public class EnumTest {
 
 	@Test
 	public void testEnumEquals() {
-		Assert.assertTrue(MyEnum.titi.equals(MyEnum.titi));
-		Assert.assertFalse(MyEnum.titi.equals(MyEnum.tutu));
-		Assert.assertFalse(MyEnum.titi.equals(null));
-		Assert.assertFalse(MyEnum.titi.equals(""));
+		Assertions.assertTrue(MyEnum.titi.equals(MyEnum.titi));
+		Assertions.assertFalse(MyEnum.titi.equals(MyEnum.tutu));
+		Assertions.assertFalse(MyEnum.titi.equals(null));
+		Assertions.assertFalse(MyEnum.titi.equals(""));
 	}
 
 	@Test
 	public void testEnumValueOf() {
-		Assert.assertEquals(MyEnum.toto, MyEnum.valueOf("toto"));
+		Assertions.assertEquals(MyEnum.toto, MyEnum.valueOf("toto"));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testEnumValueOfIllegalo() {
-		MyEnum.valueOf("tata");
+		Assertions.assertThrows(IllegalArgumentException.class, () -> MyEnum.valueOf("tata"));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void testEnumValueOfNPE() {
-		MyEnum.valueOf(null);
+		Assertions.assertThrows(NullPointerException.class, () -> MyEnum.valueOf(null));
 	}
 
 	@Test
 	public void testEnumCompareTo() {
-		Assert.assertEquals(1, MyEnum.tutu.compareTo(MyEnum.titi));
-		Assert.assertEquals(0, MyEnum.tutu.compareTo(MyEnum.tutu));
-		Assert.assertEquals(-2, MyEnum.titi.compareTo(MyEnum.toto));
-		Assert.assertEquals(-1, MyEnum.tutu.compareTo(MyEnum.toto));
+		Assertions.assertEquals(1, MyEnum.tutu.compareTo(MyEnum.titi));
+		Assertions.assertEquals(0, MyEnum.tutu.compareTo(MyEnum.tutu));
+		Assertions.assertEquals(-2, MyEnum.titi.compareTo(MyEnum.toto));
+		Assertions.assertEquals(-1, MyEnum.tutu.compareTo(MyEnum.toto));
 	}
 
 }

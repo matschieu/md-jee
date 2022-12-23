@@ -1,8 +1,8 @@
 package com.github.matschieu.java.test.api;
 import java.util.Locale;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class LocaleTest {
 
@@ -13,12 +13,12 @@ public class LocaleTest {
 
 		for(final Locale locale : Locale.getAvailableLocales()) {
 			if (country.toUpperCase().equals(locale.getCountry())) {
-				Assert.assertEquals("FRA", locale.getISO3Country());
+				Assertions.assertEquals("FRA", locale.getISO3Country());
 				found = true;
 			}
 		}
 
-		Assert.assertTrue(found);
+		Assertions.assertTrue(found);
 	}
 
 }

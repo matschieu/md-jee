@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 abstract class GenericA<T, U> {
 
@@ -24,6 +24,6 @@ public class GenericsTest {
 
 	@Test
 	public void testGenerics() {
-		Assert.assertEquals("Short", new GenericB().getTClass());
+		Assertions.assertEquals("Short", new GenericB().getTClass());
 	}
 }

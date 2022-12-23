@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NullTest {
 
@@ -12,10 +12,10 @@ public class NullTest {
 	@Test
 	public void testNull() {
 		final NullTest tn = new NullTest();
-		Assert.assertTrue(tn.foo(tn));
-		Assert.assertFalse(tn.foo(null));
-		Assert.assertFalse(tn == null);
-		Assert.assertFalse("".equals(null));
+		Assertions.assertTrue(tn.foo(tn));
+		Assertions.assertFalse(tn.foo(null));
+		Assertions.assertFalse(tn == null);
+		Assertions.assertFalse("".equals(null));
 	}
 
 }

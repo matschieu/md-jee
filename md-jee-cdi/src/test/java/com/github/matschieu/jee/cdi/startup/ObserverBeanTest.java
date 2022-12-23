@@ -1,12 +1,14 @@
 package com.github.matschieu.jee.cdi.startup;
 
-import javax.inject.Inject;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.jboss.weld.junit5.EnableWeld;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.jee.cdi.WeldTest;
 
+import jakarta.inject.Inject;
+
+@EnableWeld
 public class ObserverBeanTest extends WeldTest {
 
 	@Inject
@@ -18,10 +20,10 @@ public class ObserverBeanTest extends WeldTest {
 	@Test
 	public void testIniAndDestroyBean() {
 		// Because ObserverBean is an observer, it is a singleton by default
-		Assert.assertTrue(this.observerBean1 == this.observerBean2);
+		Assertions.assertTrue(this.observerBean1 == this.observerBean2);
 
-		Assert.assertTrue(this.observerBean1.isInit());
-		Assert.assertFalse(this.observerBean1.isDestroyed());
+		Assertions.assertTrue(this.observerBean1.isInit());
+		Assertions.assertFalse(this.observerBean1.isDestroyed());
 	}
 
 }

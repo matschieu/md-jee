@@ -3,8 +3,8 @@ package com.github.matschieu.java.test.language;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ObjectSizeTest {
 
@@ -24,10 +24,10 @@ public class ObjectSizeTest {
 		final long total2 = Runtime.getRuntime().totalMemory();
 		final long free2 = Runtime.getRuntime().freeMemory();
 
-		//final Assert.ass
-		Assert.assertEquals(0, max1 - max2);
-		Assert.assertEquals(0, total1 - total2);
-		Assert.assertTrue(free1 > free2);
+		//final Assertions.ass
+		Assertions.assertEquals(0, max1 - max2);
+		Assertions.assertEquals(0, total1 - total2);
+		Assertions.assertTrue(free1 > free2);
 	}
 
 }

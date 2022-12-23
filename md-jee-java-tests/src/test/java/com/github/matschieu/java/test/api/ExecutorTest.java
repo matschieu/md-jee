@@ -1,6 +1,6 @@
 package com.github.matschieu.java.test.api;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class Sleeper implements Callable<String> {
 
@@ -39,7 +39,7 @@ public class ExecutorTest {
 		final List<Future<String>> futures = executor.invokeAll(Arrays.asList(new Sleeper(100), new Sleeper(1000), new Sleeper(100)), 500, TimeUnit.MILLISECONDS);
 
 		try {
-			Assert.assertEquals("OK", futures.get(0).get());
+			Assertions.assertEquals("OK", futures.get(0).get());
 		} catch(final CancellationException e) {
 			fail(e.getMessage());
 		}
@@ -47,13 +47,13 @@ public class ExecutorTest {
 		try {
 			fail(futures.get(1).get());
 		} catch(final CancellationException e) {
-			Assert.assertNotNull(e);
+			Assertions.assertNotNull(e);
 		}
 
 		try {
 			fail(futures.get(2).get());
 		} catch(final CancellationException e) {
-			Assert.assertNotNull(e);
+			Assertions.assertNotNull(e);
 		}
 
 		executor.shutdown();

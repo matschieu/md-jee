@@ -1,9 +1,9 @@
 package com.github.matschieu.jee.cdi.dfault;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Alternative;
-
 import com.github.matschieu.jee.cdi.ServiceCounter;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.inject.Alternative;
 
 @Alternative
 public class EnglishHelloService implements HelloService {

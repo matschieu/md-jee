@@ -1,13 +1,13 @@
 package com.github.matschieu.java.test.api;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Scanner;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class StackTraceTest {
 
@@ -28,7 +28,7 @@ public class StackTraceTest {
 			this.throwException();
 			fail();
 		} catch (final Exception e) {
-			Assert.assertEquals(NullPointerException.class, e.getCause().getClass());
+			Assertions.assertEquals(NullPointerException.class, e.getCause().getClass());
 
 			final StringWriter strWriter = new StringWriter();
 
@@ -41,8 +41,8 @@ public class StackTraceTest {
 				stLastLine = sc.nextLine();
 			}
 
-			Assert.assertNotNull(stLastLine);
-			Assert.assertEquals("at com.github.matschieu.java.test.api.VirtualClass.virtualMethod(VirtualClass.class:1317)", stLastLine.trim());
+			Assertions.assertNotNull(stLastLine);
+			Assertions.assertEquals("at com.github.matschieu.java.test.api.VirtualClass.virtualMethod(VirtualClass.class:1317)", stLastLine.trim());
 		}
 	}
 

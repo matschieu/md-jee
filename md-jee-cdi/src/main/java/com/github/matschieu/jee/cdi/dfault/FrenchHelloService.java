@@ -1,10 +1,10 @@
 package com.github.matschieu.jee.cdi.dfault;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Default;
-
 import com.github.matschieu.jee.cdi.ServiceCounter;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Default;
 
 @Default
 @ApplicationScoped

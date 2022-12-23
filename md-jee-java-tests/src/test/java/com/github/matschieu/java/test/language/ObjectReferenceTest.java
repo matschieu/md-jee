@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ObjectReferenceTest {
 
@@ -38,15 +38,15 @@ public class ObjectReferenceTest {
 		obj1 = new MyClass();
 		obj1.value = "VALUE";
 
-		Assert.assertNotNull(obj1.value);
+		Assertions.assertNotNull(obj1.value);
 		updateAttribute(obj1);
-		Assert.assertNull(obj1.value);
+		Assertions.assertNull(obj1.value);
 
 		obj1.value = "VALUE";
 
-		Assert.assertNotNull(obj1.value);
+		Assertions.assertNotNull(obj1.value);
 		updateObject(obj1);
-		Assert.assertNotNull(obj1.value);
+		Assertions.assertNotNull(obj1.value);
 	}
 
 	@Test
@@ -54,17 +54,17 @@ public class ObjectReferenceTest {
 		MyClass obj1 = new MyClass();
 		final MyClass obj2 = new MyClass();
 
-		Assert.assertFalse(obj1 == new MyClass());
-		Assert.assertFalse(obj1 == obj2);
-		Assert.assertTrue(obj1.equals(obj2));
-		Assert.assertTrue(obj2.equals(obj1));
+		Assertions.assertFalse(obj1 == new MyClass());
+		Assertions.assertFalse(obj1 == obj2);
+		Assertions.assertTrue(obj1.equals(obj2));
+		Assertions.assertTrue(obj2.equals(obj1));
 
 		obj1 = obj2;
 
-		Assert.assertTrue(obj1 == obj2);
+		Assertions.assertTrue(obj1 == obj2);
 
-		Assert.assertTrue(obj1 == getMyClass(obj1));
-		Assert.assertTrue(obj1 == getMyClassFinal(obj1));
+		Assertions.assertTrue(obj1 == getMyClass(obj1));
+		Assertions.assertTrue(obj1 == getMyClassFinal(obj1));
 	}
 
 }

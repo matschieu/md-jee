@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class InputStreamTest {
 
@@ -20,15 +20,15 @@ public class InputStreamTest {
 			int[] buffer = new int[] {};
 
 			while ((value = is.read()) != -1) {
-				Assert.assertEquals(bytes[idx], value);
+				Assertions.assertEquals(bytes[idx], value);
 				buffer = Arrays.copyOf(buffer, buffer.length + 1);
 				buffer[idx++] = value;
 			}
 
 			if (j == 0) {
-				Assert.assertEquals(bytes.length, buffer.length);
+				Assertions.assertEquals(bytes.length, buffer.length);
 			} else {
-				Assert.assertEquals(0, buffer.length);
+				Assertions.assertEquals(0, buffer.length);
 			}
 		}
 	}

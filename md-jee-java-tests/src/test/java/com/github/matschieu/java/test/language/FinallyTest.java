@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class FinallyTest {
 
@@ -25,14 +25,14 @@ public class FinallyTest {
 			flag3 = true;
 		}
 
-		Assert.assertTrue(flag1);
-		Assert.assertTrue(flag2);
-		Assert.assertTrue(flag3);
+		Assertions.assertTrue(flag1);
+		Assertions.assertTrue(flag2);
+		Assertions.assertTrue(flag3);
 	}
 
 	@Test
 	public void testFinally2() {
-		Assert.assertEquals(0, getNumber1());
+		Assertions.assertEquals(0, getNumber1());
 	}
 
 	public int getNumber1() {
@@ -46,11 +46,12 @@ public class FinallyTest {
 		}
 	}
 
-	@Test(expected = Exception.class)
+	@Test
 	public void testFinally3() throws Exception {
-		getNumber2();
+		Assertions.assertThrows(Exception.class, () -> getNumber2());
 	}
 
+	@SuppressWarnings("finally")
 	public int getNumber2() throws Exception {
 		try {
 			return 1;

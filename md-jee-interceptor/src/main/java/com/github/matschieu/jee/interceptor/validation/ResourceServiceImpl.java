@@ -1,6 +1,6 @@
 package com.github.matschieu.jee.interceptor.validation;
 
-import javax.interceptor.Interceptors;
+import jakarta.interceptor.Interceptors;
 
 @Interceptors(ValidationInterceptor.class)
 public class ResourceServiceImpl implements ResourceService {

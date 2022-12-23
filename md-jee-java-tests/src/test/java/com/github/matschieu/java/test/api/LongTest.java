@@ -1,25 +1,22 @@
 package com.github.matschieu.java.test.api;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-
-@RunWith(JUnitParamsRunner.class)
 public class LongTest {
 
 	@Test
 	public void testParseLongOK() {
-		Assert.assertEquals(12, Long.parseLong("12"));
-		Assert.assertEquals(12, Long.parseLong("012"));
+		Assertions.assertEquals(12, Long.parseLong("12"));
+		Assertions.assertEquals(12, Long.parseLong("012"));
 	}
 
-	@Test(expected = NumberFormatException.class)
-	@Parameters({"toto", "", "null"})
+	@ParameterizedTest
+	@ValueSource(strings = {"toto", "", "null"})
 	public void testParseLongKO(String value) {
-		Long.parseLong("null".equals(value) ? null : value);
+		Assertions.assertThrows(NumberFormatException.class, () -> Long.parseLong("null".equals(value) ? null : value));
 	}
 
 }

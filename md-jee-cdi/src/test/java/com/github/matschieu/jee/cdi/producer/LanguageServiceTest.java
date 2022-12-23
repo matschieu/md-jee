@@ -1,11 +1,11 @@
 package com.github.matschieu.jee.cdi.producer;
 
-import javax.inject.Inject;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.jee.cdi.WeldTest;
+
+import jakarta.inject.Inject;
 
 public class LanguageServiceTest extends WeldTest {
 
@@ -18,13 +18,13 @@ public class LanguageServiceTest extends WeldTest {
 
 		final LanguageService languageService = this.getContainer().select(LanguageService.class).get();
 
-		Assert.assertEquals("Java", languageService.getName());
+		Assertions.assertEquals("Java", languageService.getName());
 
 		this.shutdownContainer();
 	}
 
 	@Test
 	public void testWithAnnotation() {
-		Assert.assertEquals("Java", this.languageService.getName());
+		Assertions.assertEquals("Java", this.languageService.getName());
 	}
 }

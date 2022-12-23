@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.api;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class IntegerTest {
 
@@ -12,17 +12,17 @@ public class IntegerTest {
 		final Integer c = Integer.valueOf(1000);
 		final Integer d = Integer.valueOf(1000);
 
-		Assert.assertTrue(a == b);
-		Assert.assertFalse(a != b);
-		Assert.assertFalse(c == d);
-		Assert.assertTrue(c != d);
+		Assertions.assertTrue(a == b);
+		Assertions.assertFalse(a != b);
+		Assertions.assertFalse(c == d);
+		Assertions.assertTrue(c != d);
 
 		for(int i = 250; i < 260; i++) {
 			final Integer a_ = Integer.valueOf(i);
 			final Integer b_ = Integer.valueOf(i);
 
-			Assert.assertFalse(a_ == b_);
-			Assert.assertTrue(a_ != b_);
+			Assertions.assertFalse(a_ == b_);
+			Assertions.assertTrue(a_ != b_);
 		}
 	}
 

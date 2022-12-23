@@ -2,15 +2,17 @@ package com.github.matschieu.jee.cdi;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
-import org.jboss.weld.junit4.WeldInitiator;
-import org.junit.Rule;
+import org.jboss.weld.junit5.EnableWeld;
+import org.jboss.weld.junit5.WeldInitiator;
+import org.jboss.weld.junit5.WeldSetup;
 
+@EnableWeld
 public abstract class WeldTest {
 
 	private WeldContainer container = null;
 
-	@Rule
-	public WeldInitiator weld = WeldInitiator.from(WeldInitiator.createWeld().enableDiscovery()).activate().inject(this).build();
+	@WeldSetup
+	public WeldInitiator weld = WeldInitiator.of(WeldInitiator.createWeld().enableDiscovery());
 
 	public void initContainer() {
 		if (container == null) {

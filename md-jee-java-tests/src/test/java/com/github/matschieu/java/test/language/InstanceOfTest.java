@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class MyClass {
 
@@ -19,8 +19,8 @@ public class InstanceOfTest {
 		final MyClass b = new B();
 		final MyClass c = null;
 
-		Assert.assertFalse(a instanceof B);
-		Assert.assertTrue(b instanceof B);
-		Assert.assertFalse(c instanceof B);
+		Assertions.assertFalse(a instanceof B);
+		Assertions.assertTrue(b instanceof B);
+		Assertions.assertFalse(c instanceof B);
 	}
 }

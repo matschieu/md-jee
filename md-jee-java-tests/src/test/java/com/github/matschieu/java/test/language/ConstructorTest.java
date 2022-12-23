@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class ConstA {
 
@@ -21,7 +21,7 @@ public class ConstructorTest {
 
 	@Test
 	public void testConstructor() {
-		Assert.assertTrue((new ConstC()).flag);
+		Assertions.assertTrue((new ConstC()).flag);
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.api;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ThreadTest {
 
@@ -22,7 +22,7 @@ public class ThreadTest {
 		final long start = System.currentTimeMillis();
 		boolean timeout = false;
 
-		Assert.assertFalse(t.isInterrupted());
+		Assertions.assertFalse(t.isInterrupted());
 
 		while (!timeout && t.isAlive()) {
 			if (start + timeoutValue < System.currentTimeMillis()) {
@@ -31,7 +31,7 @@ public class ThreadTest {
 			}
 		}
 
-		Assert.assertTrue(t.isInterrupted());
-		Assert.assertTrue(timeout);
+		Assertions.assertTrue(t.isInterrupted());
+		Assertions.assertTrue(timeout);
 	}
 }

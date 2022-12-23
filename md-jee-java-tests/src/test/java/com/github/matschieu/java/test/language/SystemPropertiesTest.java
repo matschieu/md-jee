@@ -2,7 +2,7 @@ package com.github.matschieu.java.test.language;
 
 import java.util.Map.Entry;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 public class SystemPropertiesTest {

@@ -5,8 +5,8 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 
 public class ReflectionTest {
@@ -21,13 +21,13 @@ public class ReflectionTest {
 		final Field fbool = ReflectionTest.class.getField("bool");
 		final Field fstr = ReflectionTest.class.getField("str");
 
-		Assert.assertTrue(primitiveObjects.contains(fbool.getType()));
-		Assert.assertFalse(primitiveObjects.contains(fstr.getType()));
+		Assertions.assertTrue(primitiveObjects.contains(fbool.getType()));
+		Assertions.assertFalse(primitiveObjects.contains(fstr.getType()));
 
 		final ReflectionTest miscTest = new ReflectionTest();
 
-		Assert.assertNull(miscTest.bool);
-		Assert.assertNull(miscTest.str);
+		Assertions.assertNull(miscTest.bool);
+		Assertions.assertNull(miscTest.str);
 
 		final Method method = fbool.getType().getMethod("valueOf", String.class);
 		try {
@@ -38,8 +38,8 @@ public class ReflectionTest {
 			e.printStackTrace();
 		}
 
-		Assert.assertTrue(miscTest.bool);
-		Assert.assertEquals("TrUe", miscTest.str);
+		Assertions.assertTrue(miscTest.bool);
+		Assertions.assertEquals("TrUe", miscTest.str);
 	}
 
 }

@@ -1,10 +1,9 @@
 package com.github.matschieu.java.test.api;
+
 import java.util.regex.Pattern;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class PatternTest {
 
@@ -12,16 +11,16 @@ public class PatternTest {
 	public void testMatchesOK() {
 		final Pattern pattern = Pattern.compile("[a-zA-Z]{1,2}");
 
-		Assert.assertTrue(pattern.matcher("M").matches());
-		Assert.assertFalse(pattern.matcher("M1").matches());
-		Assert.assertTrue(pattern.matcher("MD").matches());
-		Assert.assertFalse(pattern.matcher("toto").matches());
-		Assert.assertFalse(pattern.matcher("1234").matches());
-		Assert.assertFalse(pattern.matcher("").matches());
+		Assertions.assertTrue(pattern.matcher("M").matches());
+		Assertions.assertFalse(pattern.matcher("M1").matches());
+		Assertions.assertTrue(pattern.matcher("MD").matches());
+		Assertions.assertFalse(pattern.matcher("toto").matches());
+		Assertions.assertFalse(pattern.matcher("1234").matches());
+		Assertions.assertFalse(pattern.matcher("").matches());
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void testMatchesKO() {
-		Pattern.compile("[a-zA-Z]{1,2}").matcher(null).matches();
+		Assertions.assertThrows(NullPointerException.class, () -> Pattern.compile("[a-zA-Z]{1,2}").matcher(null).matches());
 	}
 }

@@ -1,6 +1,6 @@
 package com.github.matschieu.java.test.language;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ArrayTest {
 
@@ -21,7 +21,7 @@ public class ArrayTest {
 		}
 
 		for(int i = 0; i < array.length; i++) {
-			Assert.assertEquals("" + i, array[i]);
+			Assertions.assertEquals("" + i, array[i]);
 		}
 	}
 

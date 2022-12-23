@@ -1,7 +1,7 @@
 package com.github.matschieu.jee.cdi.producer;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Produces;
 
 public class LanguageServiceFactory {
 

@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.github.matschieu</groupId>
 		<artifactId>md-jee</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>md-jee-interceptor</artifactId>
@@ -26,12 +26,12 @@
 
 		<dependency>
 			<groupId>org.jboss.weld</groupId>
-			<artifactId>weld-junit4</artifactId>
+			<artifactId>weld-junit5</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
 		</dependency>
 	</dependencies>
 </project>

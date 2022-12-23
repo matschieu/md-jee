@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.api;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class StringTest {
 
@@ -9,8 +9,8 @@ public class StringTest {
 	public void testIndexOf() {
 		final String str = "my.value";
 
-		Assert.assertEquals("value", str.substring(str.indexOf('.') + 1));
-		Assert.assertEquals(".value", str.substring(str.indexOf('.')));
+		Assertions.assertEquals("value", str.substring(str.indexOf('.') + 1));
+		Assertions.assertEquals(".value", str.substring(str.indexOf('.')));
 
 	}
 
@@ -18,14 +18,14 @@ public class StringTest {
 	public void testSplit() {
 		final String[] array = "aa;aa;;aa".split(";");
 
-		Assert.assertEquals(4, array.length);
+		Assertions.assertEquals(4, array.length);
 
 		for(int i = 0; i < array.length; i++) {
-			Assert.assertNotNull(array[i]);
-			Assert.assertNotNull(array[i].trim());
+			Assertions.assertNotNull(array[i]);
+			Assertions.assertNotNull(array[i].trim());
 		}
 
-		Assert.assertEquals(4, array.length);
+		Assertions.assertEquals(4, array.length);
 	}
 
 	@Test
@@ -34,24 +34,24 @@ public class StringTest {
 		final String s2 = s1;
 		s1 = "s1.1";
 
-		Assert.assertFalse(s1 == s2);
-		Assert.assertNotEquals(s1, s2);
+		Assertions.assertFalse(s1 == s2);
+		Assertions.assertNotEquals(s1, s2);
 	}
 
 	@Test
 	public void testFormat() {
 		final String format = String.format("%%0%dd", 2);
 
-		Assert.assertEquals("%02d", format);
+		Assertions.assertEquals("%02d", format);
 
 		for (int i = 0; i < 4; i++) {
-			Assert.assertEquals("0" + i, String.format(format, i));
+			Assertions.assertEquals("0" + i, String.format(format, i));
 		}
 	}
 
 	@Test
 	public void testValueOf() {
-		Assert.assertEquals("S", String.valueOf('S'));
+		Assertions.assertEquals("S", String.valueOf('S'));
 	}
 
 }

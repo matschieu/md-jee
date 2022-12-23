@@ -1,25 +1,27 @@
 package com.github.matschieu.jee.interceptor.dummy;
 
-import javax.inject.Inject;
+import org.jboss.weld.junit5.EnableWeld;
+import org.jboss.weld.junit5.WeldInitiator;
+import org.jboss.weld.junit5.WeldSetup;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.jboss.weld.junit4.WeldInitiator;
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
+import jakarta.inject.Inject;
 
+@EnableWeld
 public class MyServiceTest {
 
-	@Rule
-	public WeldInitiator weld = WeldInitiator.from(MyService.class, MyServiceImpl.class).activate().inject(this).build();
+	@WeldSetup
+	public WeldInitiator weld = WeldInitiator.from(MyService.class, MyServiceImpl.class).build();
 
 	@Inject
 	private MyService myService;
 
 	@Test
 	public void testMyService() {
-		Assert.assertEquals(2, this.myService.getInt());
-		Assert.assertEquals(Integer.valueOf(2), this.myService.getInteger());
-		Assert.assertEquals("{[MyString]}", this.myService.getString());
-		Assert.assertEquals("{[MyOtherString]}", this.myService.getOtherString());
+		Assertions.assertEquals(2, this.myService.getInt());
+		Assertions.assertEquals(Integer.valueOf(2), this.myService.getInteger());
+		Assertions.assertEquals("{[MyString]}", this.myService.getString());
+		Assertions.assertEquals("{[MyOtherString]}", this.myService.getOtherString());
 	}
 }

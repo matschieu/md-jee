@@ -1,11 +1,11 @@
 package com.github.matschieu.jee.cdi.dfault;
 
-import javax.inject.Inject;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.jee.cdi.WeldTest;
+
+import jakarta.inject.Inject;
 
 public class HelloServiceTest extends WeldTest {
 
@@ -18,13 +18,13 @@ public class HelloServiceTest extends WeldTest {
 
 		final HelloService helloService = this.getContainer().select(HelloService.class).get();
 
-		Assert.assertEquals("Bonjour", helloService.sayHello());
+		Assertions.assertEquals("Bonjour", helloService.sayHello());
 
 		this.shutdownContainer();
 	}
 
 	@Test
 	public void testWithAnnotation() {
-		Assert.assertEquals("Bonjour", this.helloService.sayHello());
+		Assertions.assertEquals("Bonjour", this.helloService.sayHello());
 	}
 }

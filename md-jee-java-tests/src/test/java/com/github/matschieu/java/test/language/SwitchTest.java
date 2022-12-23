@@ -1,26 +1,29 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SwitchTest {
 
 	enum MyEnum { ENUM1, ENUM2 };
 
-	@Test(expected = NullPointerException.class)
+	@SuppressWarnings("null")
+	@Test
 	public void testSwitchWithNull() {
-		final MyEnum myEnum = null;
+		Assertions.assertThrows(NullPointerException.class, () -> {
+			final MyEnum myEnum = null;
 
-		switch (myEnum) { // throws NPE
-		case ENUM1:
-			Assert.fail(MyEnum.ENUM1.name());
-			break;
-		case ENUM2:
-			Assert.fail(MyEnum.ENUM2.name());
-			break;
-		default:
-			Assert.fail("default");
-			break;
-		}
+			switch (myEnum) { // throws NPE
+			case ENUM1:
+				Assertions.fail(MyEnum.ENUM1.name());
+				break;
+			case ENUM2:
+				Assertions.fail(MyEnum.ENUM2.name());
+				break;
+			default:
+				Assertions.fail("default");
+				break;
+			}
+		});
 	}
 }

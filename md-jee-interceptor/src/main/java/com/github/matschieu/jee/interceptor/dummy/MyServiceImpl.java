@@ -1,9 +1,9 @@
 package com.github.matschieu.jee.interceptor.dummy;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Default;
-import javax.interceptor.Interceptors;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Default;
+import jakarta.interceptor.Interceptors;
 
 @Default
 @ApplicationScoped

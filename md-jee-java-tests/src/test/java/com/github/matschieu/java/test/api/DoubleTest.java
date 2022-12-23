@@ -1,30 +1,27 @@
 package com.github.matschieu.java.test.api;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-
-@RunWith(JUnitParamsRunner.class)
 public class DoubleTest {
 
 	@Test
 	public void testParseDoubleOK() {
-		Assert.assertEquals(-12.0, Double.parseDouble("-12"), 0.0);
-		Assert.assertEquals(-12.0, Double.parseDouble("-12.0"), 0.0);
+		Assertions.assertEquals(-12.0, Double.parseDouble("-12"), 0.0);
+		Assertions.assertEquals(-12.0, Double.parseDouble("-12.0"), 0.0);
 	}
 
-	@Test(expected = NumberFormatException.class)
-	@Parameters({"N", ""})
+	@ParameterizedTest
+	@ValueSource(strings = {"N", ""})
 	public void testParseDoubleKO(String value) {
-		Double.parseDouble(value);
+		Assertions.assertThrows(NumberFormatException.class, () -> Double.parseDouble(value));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void testParseDoubleKO() {
-		Double.parseDouble(null);
+		Assertions.assertThrows(NullPointerException.class, () -> Double.parseDouble(null));
 	}
 
 }

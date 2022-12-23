@@ -1,6 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class Titi {
 	public void test() {
@@ -16,9 +17,9 @@ class Toto {
 
 public class ExceptionTest {
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testException() {
-		Toto.test();
+		Assertions.assertThrows(IllegalArgumentException.class, () -> Toto.test());
 	}
 
 }

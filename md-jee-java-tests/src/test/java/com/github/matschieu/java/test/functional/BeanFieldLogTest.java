@@ -1,8 +1,8 @@
 package com.github.matschieu.java.test.functional;
 import java.lang.reflect.InvocationTargetException;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 
 class Bean {
@@ -109,8 +109,8 @@ public class BeanFieldLogTest {
 	@Test
 	public void testLogging() throws Exception {
 		final Bean bean = new Bean();
-		Assert.assertEquals("a: 1, b: 2, bean.bean.a: 1, bean.bean.addition: 3", Logger.logBeanFields(bean, "a,b,bean.bean.a,bean.bean.addition()"));
-		Assert.assertEquals(String.format("[%s] [testLogging] this is a message!", this.getClass().getName()), Logger.log("this is a message!"));
+		Assertions.assertEquals("a: 1, b: 2, bean.bean.a: 1, bean.bean.addition: 3", Logger.logBeanFields(bean, "a,b,bean.bean.a,bean.bean.addition()"));
+		Assertions.assertEquals(String.format("[%s] [testLogging] this is a message!", this.getClass().getName()), Logger.log("this is a message!"));
 	}
 
 }

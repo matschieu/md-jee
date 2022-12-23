@@ -1,7 +1,7 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 
 interface Itf {
@@ -31,7 +31,7 @@ public class InheritenceTest {
 
 	@Test
 	public void testInheritance() {
-		Assert.assertEquals("ClassB", (new ClassB()).getName());
+		Assertions.assertEquals("ClassB", (new ClassB()).getName());
 	}
 
 }

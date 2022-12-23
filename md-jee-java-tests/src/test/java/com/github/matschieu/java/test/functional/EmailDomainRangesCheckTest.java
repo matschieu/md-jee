@@ -1,13 +1,9 @@
 package com.github.matschieu.java.test.functional;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-
-@RunWith(JUnitParamsRunner.class)
 public class EmailDomainRangesCheckTest {
 
 	private static final String[] list = new String[] {
@@ -35,16 +31,16 @@ public class EmailDomainRangesCheckTest {
 		return false;
 	}
 
-	@Test
-	@Parameters({"toto@myDomain1.com", "yo@myDomain2.fr", "fck@myDomain3.be", "ami.toto@MYDOMAIN1.com", "bidou@myDOMain2.fr"})
+	@ParameterizedTest
+	@ValueSource(strings = {"toto@myDomain1.com", "yo@myDomain2.fr", "fck@myDomain3.be", "ami.toto@MYDOMAIN1.com", "bidou@myDOMain2.fr"})
 	public void testEmailInList(String email) {
-		Assert.assertTrue(check(list, email));
+		Assertions.assertTrue(check(list, email));
 	}
 
-	@Test
-	@Parameters({"ploup@myDomain2.be", "burn@myDomain4.fr", "me@MYdomain2.be"})
+	@ParameterizedTest
+	@ValueSource(strings = {"ploup@myDomain2.be", "burn@myDomain4.fr", "me@MYdomain2.be"})
 	public void testEmailNotInList(String email) {
-		Assert.assertFalse(check(list, email));
-		Assert.assertFalse(check(list, null));
+		Assertions.assertFalse(check(list, email));
+		Assertions.assertFalse(check(list, null));
 	}
 }

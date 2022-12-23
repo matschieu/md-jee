@@ -1,13 +1,16 @@
 package com.github.matschieu.java.test.language;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class AssertTest {
 
-	@Test(expected = AssertionError.class)
+	@Test
 	public void testAssertKo() {
-		final String str = null;
-		assert str != null : "Null variable";
+		Assertions.assertThrows(AssertionError.class, () -> {
+			final String str = null;
+			assert str != null : "Null variable";
+		});
 	}
 
 	@Test

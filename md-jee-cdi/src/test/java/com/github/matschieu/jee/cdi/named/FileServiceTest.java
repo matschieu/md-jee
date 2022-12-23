@@ -1,12 +1,12 @@
 package com.github.matschieu.jee.cdi.named;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.jee.cdi.WeldTest;
+
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 public class FileServiceTest extends WeldTest {
 
@@ -23,15 +23,15 @@ public class FileServiceTest extends WeldTest {
 		final FileService javaFileService = this.getContainer().select(FileService.class, new org.jboss.weld.literal.NamedLiteral("JavaFileService")).get();
 		final FileService textFileService = this.getContainer().select(FileService.class, new org.jboss.weld.literal.NamedLiteral("TextFileService")).get();
 
-		Assert.assertEquals(".java", javaFileService.getFileExtension());
-		Assert.assertEquals(".txt", textFileService.getFileExtension());
+		Assertions.assertEquals(".java", javaFileService.getFileExtension());
+		Assertions.assertEquals(".txt", textFileService.getFileExtension());
 
 		this.shutdownContainer();
 	}
 
 	@Test
 	public void testWithAnnotation() {
-		Assert.assertEquals(".java", this.javaFileService.getFileExtension());
-		Assert.assertEquals(".txt", this.textFileService.getFileExtension());
+		Assertions.assertEquals(".java", this.javaFileService.getFileExtension());
+		Assertions.assertEquals(".txt", this.textFileService.getFileExtension());
 	}
 }

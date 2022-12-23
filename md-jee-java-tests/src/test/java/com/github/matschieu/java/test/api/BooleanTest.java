@@ -1,20 +1,20 @@
 package com.github.matschieu.java.test.api;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class BooleanTest {
 
 	@Test
 	public void testParse() {
-		Assert.assertTrue(Boolean.parseBoolean("TRUE"));
-		Assert.assertTrue(Boolean.parseBoolean("true"));
-		Assert.assertFalse(Boolean.parseBoolean("FALSE"));
-		Assert.assertFalse(Boolean.parseBoolean("false"));
-		Assert.assertFalse(Boolean.parseBoolean(""));
-		Assert.assertFalse(Boolean.parseBoolean("sdqsdqs"));
-		Assert.assertFalse(Boolean.parseBoolean(null));
-		Assert.assertFalse(Boolean.parseBoolean("true,false"));
+		Assertions.assertTrue(Boolean.parseBoolean("TRUE"));
+		Assertions.assertTrue(Boolean.parseBoolean("true"));
+		Assertions.assertFalse(Boolean.parseBoolean("FALSE"));
+		Assertions.assertFalse(Boolean.parseBoolean("false"));
+		Assertions.assertFalse(Boolean.parseBoolean(""));
+		Assertions.assertFalse(Boolean.parseBoolean("sdqsdqs"));
+		Assertions.assertFalse(Boolean.parseBoolean(null));
+		Assertions.assertFalse(Boolean.parseBoolean("true,false"));
 	}
 
 }

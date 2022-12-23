@@ -1,8 +1,8 @@
 package com.github.matschieu.jee.cdi.qualifier;
 
-import javax.annotation.PostConstruct;
-
 import com.github.matschieu.jee.cdi.ServiceCounter;
+
+import jakarta.annotation.PostConstruct;
 
 @RestService
 public class RestWebService implements WebService {

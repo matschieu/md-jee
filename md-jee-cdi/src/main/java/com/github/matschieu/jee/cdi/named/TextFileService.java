@@ -1,9 +1,9 @@
 package com.github.matschieu.jee.cdi.named;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
-
 import com.github.matschieu.jee.cdi.ServiceCounter;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
 
 @Named("TextFileService")
 public class TextFileService implements FileService {
