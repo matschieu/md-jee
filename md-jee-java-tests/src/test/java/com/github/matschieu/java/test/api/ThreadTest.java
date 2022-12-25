@@ -11,7 +11,7 @@ public class ThreadTest {
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(200);
+					Thread.sleep(2000);
 				} catch (final InterruptedException e) { }
 			}
 		});
