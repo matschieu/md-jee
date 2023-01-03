@@ -61,29 +61,40 @@ public class InjectionTest extends WeldTest {
 		Assertions.assertInstanceOf(Bean.class, bean2);
 		// Each injection of a bean create a new instance
 		Assertions.assertNotEquals(bean1, bean2);
-		Assertions.assertTrue(bean1 != bean2);
+		Assertions.assertNotSame(bean1, bean2);
 	}
 
 	@Test
 	public void testInjectionUsingProgrammingLookup() {
-		Bean bean1 = bean1Instance.get();
-		Bean bean2 = bean2Instance.get();
+		Assertions.assertTrue(bean1Instance.isResolvable());
+		Assertions.assertTrue(bean2Instance.isResolvable());
+
+		final Bean bean1 = bean1Instance.get();
+		final Bean bean2 = bean2Instance.get();
+
 		Assertions.assertInstanceOf(Bean.class, bean1);
 		Assertions.assertInstanceOf(Bean.class, bean2);
 		// Each injection of a bean create a new instance
 		Assertions.assertNotEquals(bean1, bean2);
-		Assertions.assertTrue(bean1 != bean2);
+		Assertions.assertNotSame(bean1, bean2);
 	}
 
 	@Test
 	public void testInjectionUsingContainer() {
-		Bean bean1 = weld.container().select(Bean.class).get();
-		Bean bean2 = weld.container().select(Bean.class).get();
+		final Instance<Bean> bean1Instance = weld.container().select(Bean.class);
+		final Instance<Bean> bean2Instance = weld.container().select(Bean.class);
+
+		Assertions.assertTrue(bean1Instance.isResolvable());
+		Assertions.assertTrue(bean2Instance.isResolvable());
+
+		final Bean bean1 = bean1Instance.get();
+		final Bean bean2 = bean2Instance.get();
+
 		Assertions.assertInstanceOf(Bean.class, bean1);
 		Assertions.assertInstanceOf(Bean.class, bean2);
 		// Each injection of a bean create a new instance
 		Assertions.assertNotEquals(bean1, bean2);
-		Assertions.assertTrue(bean1 != bean2);
+		Assertions.assertNotSame(bean1, bean2);
 	}
 
 	@Test
@@ -92,18 +103,20 @@ public class InjectionTest extends WeldTest {
 		Assertions.assertInstanceOf(SingletonBean.class, singletonBean2);
 		// Because a Singleton has only one instance, the container inject the same instance of a Singleton
 		Assertions.assertEquals(singletonBean1, singletonBean2);
-		Assertions.assertTrue(singletonBean1 == singletonBean2);
+		Assertions.assertSame(singletonBean1, singletonBean2);
 	}
 
 	@Test
 	public void AmbigousDependenciesTest() {
 		// Ambigous because object is the superclass of everything
+		Assertions.assertFalse(ambigousBean.isResolvable());
 		Assertions.assertTrue(ambigousBean.isAmbiguous());
 	}
 
 	@Test
 	public void unsatisfiedDependenciesTest() {
 		// Unsatisfied because no bean has these both qualifiers
+		Assertions.assertFalse(weld.container().select(AnnotationUtils.toAnnotation(Asynchronous.class), AnnotationUtils.toAnnotation(Reliable.class)).isResolvable());
 		Assertions.assertTrue(weld.container().select(AnnotationUtils.toAnnotation(Asynchronous.class), AnnotationUtils.toAnnotation(Reliable.class)).isUnsatisfied());
 	}
 
@@ -111,6 +124,7 @@ public class InjectionTest extends WeldTest {
 	public void testVetoed() {
 		// This injection is not ambigous due to the use of the Vetoed which exclude a bean from the bean management by the container
 		Assertions.assertInstanceOf(NotVetoedBean.class, notVetoedBean);
+		Assertions.assertFalse(vetoedBean.isResolvable());
 		// Getting an exception when trying to inject a Vetoed bean
 		Assertions.assertThrows(Exception.class, () -> vetoedBean.get());
 	}
@@ -126,14 +140,14 @@ public class InjectionTest extends WeldTest {
 		Assertions.assertNotNull(initBean.getMethod1Bean());
 		Assertions.assertNotNull(initBean.getMethod2Bean());
 
-		Map<Integer, String> injectionOrder = new TreeMap<>();
+		final Map<Integer, String> injectionOrder = new TreeMap<>();
 		injectionOrder.put(initBean.getMethod2Bean().getInstanceNumber(), "METHOD2");
 		injectionOrder.put(initBean.getMethod1Bean().getInstanceNumber(), "METHOD1");
 		injectionOrder.put(initBean.getField2Bean().getInstanceNumber(), "FIELD2");
 		injectionOrder.put(initBean.getField1Bean().getInstanceNumber(), "FIELD1");
 		injectionOrder.put(initBean.getConstructorBean().getInstanceNumber(), "CONSTRUCTOR");
 
-		var values = new ArrayList<String>(injectionOrder.values());
+		final var values = new ArrayList<String>(injectionOrder.values());
 
 		System.out.println(Arrays.toString(values.toArray()));
 
