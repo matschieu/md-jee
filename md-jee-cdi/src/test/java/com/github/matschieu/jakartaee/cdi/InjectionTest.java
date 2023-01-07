@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.jboss.weld.environment.se.Weld;
+import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -159,6 +161,24 @@ public class InjectionTest extends WeldTest {
 		Assertions.assertEquals("FIELD", values.get(2).substring(0, values.get(2).length() - 1));
 		Assertions.assertEquals("METHOD", values.get(3).substring(0, values.get(3).length() - 1));
 		Assertions.assertEquals("METHOD", values.get(4).substring(0, values.get(4).length() - 1));
+	}
+
+	@Test
+	public void testMultiContainer() {
+		WeldContainer container1 = new Weld().enableDiscovery().initialize();
+		WeldContainer container2 = new Weld().enableDiscovery().initialize();
+
+		SingletonBean singletonBean1 = container1.select(SingletonBean.class).get();
+		SingletonBean singletonBean2 = container2.select(SingletonBean.class).get();
+
+		// A singleton is a unique instance, so 2 instances of a singleton inside the same container are equals
+		Assertions.assertSame(singletonBean1, container1.select(SingletonBean.class).get());
+		Assertions.assertSame(singletonBean2, container2.select(SingletonBean.class).get());
+		// But 2 instances of a singleton from both container are not equals
+		Assertions.assertNotSame(singletonBean1, singletonBean2);
+
+		container1.shutdown();
+		container2.shutdown();
 	}
 
 }
