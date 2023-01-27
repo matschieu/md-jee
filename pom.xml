@@ -13,6 +13,7 @@
 	<modules>
 		<module>md-jee-cdi</module>
 		<module>md-jee-interceptor</module>
+		<module>md-jee-validation</module>
 		<module>md-jee-ejb</module>
 		<module>md-jee-java-tests</module>
 	</modules>
@@ -32,6 +33,20 @@
 				<scope>provided</scope>
 			</dependency>
 			
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>8.0.0.Final</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.expressly</groupId>
+				<artifactId>expressly</artifactId>
+				<version>5.0.0</version>
+				<scope>test</scope>
+			</dependency>
+
 			<dependency>
 				<groupId>org.jboss.weld.se</groupId>
 				<artifactId>weld-se</artifactId>

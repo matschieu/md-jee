@@ -1,4 +1,4 @@
-# CDI useful links
+# CDI (JSR 365) useful links
 * [JSR 365: Contexts and Dependency Injection for Java 2.0](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html)
 * [An Introduction to CDI (Contexts and Dependency Injection) in Java](https://www.baeldung.com/java-ee-cdi)
 * [Weld documentation](http://weld.cdi-spec.org/documentation/)
