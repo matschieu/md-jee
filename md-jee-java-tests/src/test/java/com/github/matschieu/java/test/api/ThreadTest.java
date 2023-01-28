@@ -7,19 +7,19 @@ public class ThreadTest {
 
 	@Test
 	public void testThreadWithTimeout() {
-		final Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Thread.sleep(2000);
-				} catch (final InterruptedException e) { }
+		final Thread t = new Thread(() -> {
+			try {
+				Thread.sleep(5000);
+			} catch (final InterruptedException e) {
+				Thread.currentThread().interrupt();
 			}
 		});
 
+		final long start = System.currentTimeMillis();
+
 		t.start();
 
-		final short timeoutValue = 100;
-		final long start = System.currentTimeMillis();
+		final int timeoutValue = 500;
 		boolean timeout = false;
 
 		Assertions.assertFalse(t.isInterrupted());
@@ -31,7 +31,7 @@ public class ThreadTest {
 			}
 		}
 
-		Assertions.assertTrue(t.isInterrupted());
 		Assertions.assertTrue(timeout);
+		Assertions.assertTrue(t.isInterrupted());
 	}
 }
