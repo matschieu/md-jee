@@ -20,8 +20,13 @@ import com.github.matschieu.jakartaee.cdi.bean.SingletonBean;
 import com.github.matschieu.jakartaee.cdi.bean.VetoedBean;
 import com.github.matschieu.jakartaee.cdi.common.Asynchronous;
 import com.github.matschieu.jakartaee.cdi.payment.Reliable;
+import com.github.matschieu.jakartaee.cdi.vetoedpackage.VetoedClassA;
+import com.github.matschieu.jakartaee.cdi.vetoedpackage.VetoedClassB;
+import com.github.matschieu.jakartaee.cdi.vetoedpackage.VetoedClassC;
 
 import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.UnsatisfiedResolutionException;
+import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
 
 @Order(2)
@@ -123,12 +128,27 @@ public class InjectionTest extends WeldTest {
 	}
 
 	@Test
-	public void testVetoed() {
-		// This injection is not ambigous due to the use of the Vetoed which exclude a bean from the bean management by the container
+	public void testVetoedPackage() {
+		Assertions.assertFalse(CDI.current().select(VetoedClassA.class).isResolvable());
+		Assertions.assertFalse(CDI.current().select(VetoedClassB.class).isResolvable());
+		Assertions.assertFalse(CDI.current().select(VetoedClassC.class).isResolvable());
+
+		Assertions.assertTrue(CDI.current().select(VetoedClassA.class).isUnsatisfied());
+		Assertions.assertTrue(CDI.current().select(VetoedClassB.class).isUnsatisfied());
+		Assertions.assertTrue(CDI.current().select(VetoedClassC.class).isUnsatisfied());
+
+		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> CDI.current().select(VetoedClassA.class).get());
+		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> CDI.current().select(VetoedClassB.class).get());
+		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> CDI.current().select(VetoedClassC.class).get());
+	}
+
+	@Test
+	public void testVetoedClass() {
+		// This injection is not ambigous due to the use of the Vetoed which exclude the package from the bean management by the container
 		Assertions.assertInstanceOf(NotVetoedBean.class, notVetoedBean);
 		Assertions.assertFalse(vetoedBean.isResolvable());
 		// Getting an exception when trying to inject a Vetoed bean
-		Assertions.assertThrows(Exception.class, () -> vetoedBean.get());
+		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> vetoedBean.get());
 	}
 
 	@Test
@@ -165,11 +185,11 @@ public class InjectionTest extends WeldTest {
 
 	@Test
 	public void testMultiContainer() {
-		WeldContainer container1 = new Weld().enableDiscovery().initialize();
-		WeldContainer container2 = new Weld().enableDiscovery().initialize();
+		final WeldContainer container1 = new Weld().enableDiscovery().initialize();
+		final WeldContainer container2 = new Weld().enableDiscovery().initialize();
 
-		SingletonBean singletonBean1 = container1.select(SingletonBean.class).get();
-		SingletonBean singletonBean2 = container2.select(SingletonBean.class).get();
+		final SingletonBean singletonBean1 = container1.select(SingletonBean.class).get();
+		final SingletonBean singletonBean2 = container2.select(SingletonBean.class).get();
 
 		// A singleton is a unique instance, so 2 instances of a singleton inside the same container are equals
 		Assertions.assertSame(singletonBean1, container1.select(SingletonBean.class).get());
