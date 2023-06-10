@@ -21,7 +21,7 @@ public class AsynchronousTest extends WeldTest {
 		Future<Boolean> future1 = asyncBean.process(1000);
 		Future<Boolean> future2 = asyncBean.process(0);
 
-		Thread.sleep(1);
+		Thread.sleep(100);
 
 		Assertions.assertTrue(future2.isDone());
 		Assertions.assertFalse(future1.isDone());

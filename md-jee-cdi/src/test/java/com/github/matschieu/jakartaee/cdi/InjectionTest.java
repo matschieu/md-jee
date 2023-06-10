@@ -8,7 +8,6 @@ import java.util.TreeMap;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -29,7 +28,6 @@ import jakarta.enterprise.inject.UnsatisfiedResolutionException;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
 
-@Order(2)
 public class InjectionTest extends WeldTest {
 
 	@Inject

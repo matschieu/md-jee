@@ -1,7 +1,6 @@
 package com.github.matschieu.jakartaee.cdi;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -17,7 +16,6 @@ import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.util.TypeLiteral;
 import jakarta.inject.Inject;
 
-@Order(1)
 public class BeanTypeTest extends WeldTest {
 
 	@Inject

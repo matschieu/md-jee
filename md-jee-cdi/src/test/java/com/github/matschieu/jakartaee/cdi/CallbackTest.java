@@ -3,7 +3,6 @@ package com.github.matschieu.jakartaee.cdi;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -11,7 +10,6 @@ import com.github.matschieu.jakartaee.cdi.bean.CallbackBean;
 
 import jakarta.inject.Inject;
 
-@Order(9)
 public class CallbackTest extends WeldTest {
 
 	@Inject

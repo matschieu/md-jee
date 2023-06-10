@@ -1,7 +1,6 @@
 package com.github.matschieu.jakartaee.cdi;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -10,7 +9,6 @@ import com.github.matschieu.jakartaee.cdi.bean.Bean;
 
 import jakarta.inject.Inject;
 
-@Order(8)
 public class ScopeTest extends WeldTest {
 
 	@Inject
