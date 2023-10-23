@@ -5,22 +5,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class DoubleTest {
+class DoubleTest {
 
 	@Test
-	public void testParseDoubleOK() {
+	void testParseDoubleOK() {
 		Assertions.assertEquals(-12.0, Double.parseDouble("-12"), 0.0);
 		Assertions.assertEquals(-12.0, Double.parseDouble("-12.0"), 0.0);
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = {"N", ""})
-	public void testParseDoubleKO(String value) {
+	void testParseDoubleKO(String value) {
 		Assertions.assertThrows(NumberFormatException.class, () -> Double.parseDouble(value));
 	}
 
 	@Test
-	public void testParseDoubleKO() {
+	void testParseDoubleKO() {
 		Assertions.assertThrows(NullPointerException.class, () -> Double.parseDouble(null));
 	}
 

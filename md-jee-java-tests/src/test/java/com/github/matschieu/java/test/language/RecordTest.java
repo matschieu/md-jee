@@ -15,10 +15,10 @@ record Data(String str, int i) {
 
 }
 
-public class RecordTest {
+class RecordTest {
 
 	@Test
-	public void testRecord() {
+	void testRecord() {
 		Data data = new Data("foo", 10);
 
 		Assertions.assertEquals("foo", data.str());
@@ -36,7 +36,7 @@ public class RecordTest {
 	}
 
 	@Test
-	public void testRecordEquals() {
+	void testRecordEquals() {
 		Data data1 = new Data("foo", 10);
 		Data data2 = new Data("foo", 10);
 

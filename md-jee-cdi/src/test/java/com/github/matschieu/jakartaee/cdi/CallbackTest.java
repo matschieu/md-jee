@@ -10,7 +10,7 @@ import com.github.matschieu.jakartaee.cdi.bean.CallbackBean;
 
 import jakarta.inject.Inject;
 
-public class CallbackTest extends WeldTest {
+class CallbackTest extends WeldTest {
 
 	@Inject
 	private CallbackBean bean1;
@@ -22,13 +22,13 @@ public class CallbackTest extends WeldTest {
 	private CallbackBean bean3;
 
 	@BeforeAll
-	public static void checkCallbackState() {
+	static void checkCallbackState() {
 		// At this step the container is not started, it has created no instance and the counter is 0
 		Assertions.assertEquals(0, CallbackBean.getAliveInstances());
 	}
 
 	@Test
-	public void testPostConstruct() {
+	void testPostConstruct() {
 		// At this step the container has created 3 instances
 		Assertions.assertEquals(3, CallbackBean.getAliveInstances());
 
@@ -49,7 +49,7 @@ public class CallbackTest extends WeldTest {
 	}
 
 	@AfterAll
-	public static void validatePreDestroy() {
+	static void validatePreDestroy() {
 		// Her is the proof that PreDestroy method has been called when the cointainer was stopped
 		// Each predestroy has decreased the counter of alive instances
 		// The container has created 3 instances and destroyed the sames

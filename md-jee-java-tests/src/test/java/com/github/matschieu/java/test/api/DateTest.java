@@ -8,10 +8,10 @@ import java.util.TimeZone;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class DateTest {
+class DateTest {
 
 	@Test
-	public void testDateFromTimestamp() {
+	void testDateFromTimestamp() {
 		final long timestamp = 1644233703655L; // Feb 7, 2022, 11:35:03 AM
 		final DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.FRANCE);
 		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+1"));

@@ -3,10 +3,10 @@ package com.github.matschieu.java.test.language;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ObjectReferenceTest {
+class ObjectReferenceTest {
 
 	class MyClass {
-		public String value = null;
+		String value = null;
 
 		@Override
 		public boolean equals(Object obj) {
@@ -33,7 +33,7 @@ public class ObjectReferenceTest {
 	}
 
 	@Test
-	public void testObjectRef() {
+	void testObjectRef() {
 		MyClass obj1 = null;
 		obj1 = new MyClass();
 		obj1.value = "VALUE";
@@ -50,21 +50,21 @@ public class ObjectReferenceTest {
 	}
 
 	@Test
-	public void testObjectRefEquality() {
+	void testObjectRefEquality() {
 		MyClass obj1 = new MyClass();
 		final MyClass obj2 = new MyClass();
 
-		Assertions.assertFalse(obj1 == new MyClass());
-		Assertions.assertFalse(obj1 == obj2);
-		Assertions.assertTrue(obj1.equals(obj2));
-		Assertions.assertTrue(obj2.equals(obj1));
+		Assertions.assertNotSame(obj1, new MyClass());
+		Assertions.assertNotSame(obj1, obj2);
+		Assertions.assertEquals(obj1, obj2);
+		Assertions.assertEquals(obj2, obj1);
 
 		obj1 = obj2;
 
-		Assertions.assertTrue(obj1 == obj2);
+		Assertions.assertSame(obj1, obj2);
 
-		Assertions.assertTrue(obj1 == getMyClass(obj1));
-		Assertions.assertTrue(obj1 == getMyClassFinal(obj1));
+		Assertions.assertSame(obj1, getMyClass(obj1));
+		Assertions.assertSame(obj1, getMyClassFinal(obj1));
 	}
 
 }

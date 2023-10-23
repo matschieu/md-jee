@@ -2,10 +2,10 @@ package com.github.matschieu.java.test.language;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ArrayTest {
+class ArrayTest {
 
 	@Test
-	public void testArraySize() {
+	void testArraySize() {
 		String[] array = new String[1];
 		array[0] = "0";
 

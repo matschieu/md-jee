@@ -19,7 +19,7 @@ class Sleeper implements Callable<String> {
 
 	private final int sleep;
 
-	public Sleeper(int sleep) {
+	Sleeper(int sleep) {
 		this.sleep = sleep;
 	}
 
@@ -31,10 +31,10 @@ class Sleeper implements Callable<String> {
 
 }
 
-public class ExecutorTest {
+class ExecutorTest {
 
 	@Test
-	public void testExecutorWithTimeout() throws InterruptedException, ExecutionException {
+	void testExecutorWithTimeout() throws InterruptedException, ExecutionException {
 		final ExecutorService executor = Executors.newSingleThreadExecutor();
 		final List<Future<String>> futures = executor.invokeAll(Arrays.asList(new Sleeper(100), new Sleeper(1000), new Sleeper(100)), 500, TimeUnit.MILLISECONDS);
 

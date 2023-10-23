@@ -9,7 +9,7 @@ import java.util.Scanner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class StackTraceTest {
+class StackTraceTest {
 
 	private void throwException() {
 		final NullPointerException npe = new NullPointerException("Null in VirtualClass");
@@ -23,7 +23,7 @@ public class StackTraceTest {
 	}
 
 	@Test
-	public void testStackTraceElement() {
+	void testStackTraceElement() {
 		try {
 			this.throwException();
 			fail();

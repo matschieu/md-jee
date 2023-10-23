@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 interface Itf {
 	String getName();
-	public void toto();
+	void toto();
 }
 
 abstract class ClassA implements Itf {
@@ -27,10 +27,10 @@ class ClassB extends ClassA {
 	public void toto() { }
 }
 
-public class InheritenceTest {
+class InheritenceTest {
 
 	@Test
-	public void testInheritance() {
+	void testInheritance() {
 		Assertions.assertEquals("ClassB", (new ClassB()).getName());
 	}
 

@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-public class GregorianCalendarTest {
+class GregorianCalendarTest {
 
 	@Test
-	public void testCalendar() {
+	void testCalendar() {
 		final GregorianCalendar gc = new GregorianCalendar(2016, 9, 20, 18, 00);
 
 		Assertions.assertEquals("2016.10.20 18:00:00", (new SimpleDateFormat("yyyy.MM.dd HH:mm:ss")).format(gc.getTime()));

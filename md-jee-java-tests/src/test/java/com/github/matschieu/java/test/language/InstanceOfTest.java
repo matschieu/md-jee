@@ -11,10 +11,10 @@ class B extends MyClass {
 
 }
 
-public class InstanceOfTest {
+class InstanceOfTest {
 
 	@Test
-	public void testInstanceOf() {
+	void testInstanceOf() {
 		final MyClass a = new MyClass();
 		final MyClass b = new B();
 		final MyClass c = null;

@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-public class LabelTest {
+class LabelTest {
 
 	@SuppressWarnings("unused")
 	@Test
-	public void testLabel() {
+	void testLabel() {
 		label1: {
 			label2: {
 				for(int i = 0; i < 10; i++) {

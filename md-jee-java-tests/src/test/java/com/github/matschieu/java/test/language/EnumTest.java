@@ -3,35 +3,35 @@ package com.github.matschieu.java.test.language;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class EnumTest {
+class EnumTest {
 
 	private enum MyEnum { titi, tutu, toto }
 
 	@Test
-	public void testEnumEquals() {
-		Assertions.assertTrue(MyEnum.titi.equals(MyEnum.titi));
-		Assertions.assertFalse(MyEnum.titi.equals(MyEnum.tutu));
-		Assertions.assertFalse(MyEnum.titi.equals(null));
-		Assertions.assertFalse(MyEnum.titi.equals(""));
+	void testEnumEquals() {
+		Assertions.assertEquals(MyEnum.titi, MyEnum.titi);
+		Assertions.assertNotEquals(MyEnum.titi, MyEnum.tutu);
+		Assertions.assertNotEquals(MyEnum.titi, null);
+		Assertions.assertNotEquals(MyEnum.titi, "");
 	}
 
 	@Test
-	public void testEnumValueOf() {
+	void testEnumValueOf() {
 		Assertions.assertEquals(MyEnum.toto, MyEnum.valueOf("toto"));
 	}
 
 	@Test
-	public void testEnumValueOfIllegalo() {
+	void testEnumValueOfIllegalo() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> MyEnum.valueOf("tata"));
 	}
 
 	@Test
-	public void testEnumValueOfNPE() {
+	void testEnumValueOfNPE() {
 		Assertions.assertThrows(NullPointerException.class, () -> MyEnum.valueOf(null));
 	}
 
 	@Test
-	public void testEnumCompareTo() {
+	void testEnumCompareTo() {
 		Assertions.assertEquals(1, MyEnum.tutu.compareTo(MyEnum.titi));
 		Assertions.assertEquals(0, MyEnum.tutu.compareTo(MyEnum.tutu));
 		Assertions.assertEquals(-2, MyEnum.titi.compareTo(MyEnum.toto));

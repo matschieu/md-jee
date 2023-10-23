@@ -6,10 +6,10 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ObjectSizeTest {
+class ObjectSizeTest {
 
 	@Test
-	public void testObjectSize() {
+	void testObjectSize() {
 		final long max1 = Runtime.getRuntime().maxMemory();
 		final long total1 = Runtime.getRuntime().totalMemory();
 		final long free1 = Runtime.getRuntime().freeMemory();

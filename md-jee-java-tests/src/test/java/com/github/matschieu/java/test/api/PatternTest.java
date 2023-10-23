@@ -5,10 +5,10 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class PatternTest {
+class PatternTest {
 
 	@Test
-	public void testMatchesOK() {
+	void testMatchesOK() {
 		final Pattern pattern = Pattern.compile("[a-zA-Z]{1,2}");
 
 		Assertions.assertTrue(pattern.matcher("M").matches());
@@ -20,7 +20,7 @@ public class PatternTest {
 	}
 
 	@Test
-	public void testMatchesKO() {
+	void testMatchesKO() {
 		Assertions.assertThrows(NullPointerException.class, () -> Pattern.compile("[a-zA-Z]{1,2}").matcher(null).matches());
 	}
 }

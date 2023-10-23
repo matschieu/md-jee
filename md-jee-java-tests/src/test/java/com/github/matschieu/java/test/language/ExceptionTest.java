@@ -4,21 +4,21 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class Titi {
-	public void test() {
+	void test() {
 		throw new IllegalArgumentException("this is a test");
 	}
 }
 
 class Toto {
-	public static void test() throws ArrayIndexOutOfBoundsException {
+	static void test() throws ArrayIndexOutOfBoundsException {
 		new Titi().test();
 	}
 }
 
-public class ExceptionTest {
+class ExceptionTest {
 
 	@Test
-	public void testException() {
+	void testException() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> Toto.test());
 	}
 

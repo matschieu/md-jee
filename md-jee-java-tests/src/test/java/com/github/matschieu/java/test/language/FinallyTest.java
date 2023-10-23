@@ -3,10 +3,10 @@ package com.github.matschieu.java.test.language;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class FinallyTest {
+class FinallyTest {
 
 	@Test
-	public void testFinally1() throws Exception {
+	void testFinally1() throws Exception {
 		boolean flag1 = false;
 		boolean flag2 = false;
 		boolean flag3 = false;
@@ -31,11 +31,11 @@ public class FinallyTest {
 	}
 
 	@Test
-	public void testFinally2() {
+	void testFinally2() {
 		Assertions.assertEquals(0, getNumber1());
 	}
 
-	public int getNumber1() {
+	int getNumber1() {
 		int r = 0;
 		try {
 			return r;
@@ -47,12 +47,12 @@ public class FinallyTest {
 	}
 
 	@Test
-	public void testFinally3() throws Exception {
+	void testFinally3() throws Exception {
 		Assertions.assertThrows(Exception.class, () -> getNumber2());
 	}
 
 	@SuppressWarnings("finally")
-	public int getNumber2() throws Exception {
+	int getNumber2() throws Exception {
 		try {
 			return 1;
 		} catch(final Exception e) {

@@ -17,10 +17,10 @@ class ConstB extends ConstA { }
 
 class ConstC extends ConstB { }
 
-public class ConstructorTest {
+class ConstructorTest {
 
 	@Test
-	public void testConstructor() {
+	void testConstructor() {
 		Assertions.assertTrue((new ConstC()).flag);
 	}
 

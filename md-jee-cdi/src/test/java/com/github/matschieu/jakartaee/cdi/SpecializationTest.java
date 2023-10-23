@@ -13,7 +13,7 @@ import com.github.matschieu.jakartaee.cdi.service.SpecializedService;
 
 import jakarta.inject.Inject;
 
-public class SpecializationTest extends WeldTest {
+class SpecializationTest extends WeldTest {
 
 	@Inject
 	private Service service;
@@ -30,7 +30,7 @@ public class SpecializationTest extends WeldTest {
 	private SpecializedService asyncSpecializedService;
 
 	@Test
-	public void testAlternative() {
+	void testAlternative() {
 		// MockAsynchronous service because priority increased on the alternative with @Priority
 		Assertions.assertInstanceOf(MockAsynchronousService.class, service);
 		// AsynchronousService because qualifier @Asynchronous is only on the Default implementation

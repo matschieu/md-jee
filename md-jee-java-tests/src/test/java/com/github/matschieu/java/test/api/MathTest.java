@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 
 
-public class MathTest {
+class MathTest {
 
 	 @Test
-	public void testRandom() {
+	void testRandom() {
 		for(int i = 0; i < 20; i++) {
 			final int n = (int)(Math.random() * 100.0);
 			Assertions.assertTrue(String.format("%03d", n).matches("[0][0-9]{2}"));

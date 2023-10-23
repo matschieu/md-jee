@@ -6,22 +6,22 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 
 
-public class ObjectInitTest {
+class ObjectInitTest {
 
 	private int number;
 
 	String str;
 
 
-	public void setNumber(int a) {
+	void setNumber(int a) {
 		this.number = a;
 	}
 
-	public int getNumber() {
+	int getNumber() {
 		return number;
 	}
 
-	public void testObjectInit1() {
+	void testObjectInit1() {
 		final ObjectInitTest objectInit = new ObjectInitTest() {{
 			setNumber(3);
 			str = "toto";
@@ -32,7 +32,7 @@ public class ObjectInitTest {
 
 	}
 
-	public void testObjectInit2() {
+	void testObjectInit2() {
 		@SuppressWarnings("serial")
 		final
 		List<String> list = new ArrayList<String>() {{

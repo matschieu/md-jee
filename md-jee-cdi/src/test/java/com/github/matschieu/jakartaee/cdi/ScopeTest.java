@@ -9,7 +9,7 @@ import com.github.matschieu.jakartaee.cdi.bean.Bean;
 
 import jakarta.inject.Inject;
 
-public class ScopeTest extends WeldTest {
+class ScopeTest extends WeldTest {
 
 	@Inject
 	private Bean dependentBean1;
@@ -24,7 +24,7 @@ public class ScopeTest extends WeldTest {
 	private ApplicationScopedBean appBean2;
 
 	@Test
-	public void testDependentScoped() {
+	void testDependentScoped() {
 		Assertions.assertNotNull(dependentBean1);
 		Assertions.assertNotNull(dependentBean2);
 		// dependent is the scope by default for any bean
@@ -33,7 +33,7 @@ public class ScopeTest extends WeldTest {
 	}
 
 	@Test
-	public void testApplicationScoped() {
+	void testApplicationScoped() {
 		Assertions.assertNotNull(appBean1);
 		Assertions.assertNotNull(appBean2);
 		// ApplicationScoped beans are instanciated once for the whole application

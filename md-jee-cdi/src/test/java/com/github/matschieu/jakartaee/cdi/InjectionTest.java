@@ -28,7 +28,7 @@ import jakarta.enterprise.inject.UnsatisfiedResolutionException;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
 
-public class InjectionTest extends WeldTest {
+class InjectionTest extends WeldTest {
 
 	@Inject
 	private Bean bean1;
@@ -61,7 +61,7 @@ public class InjectionTest extends WeldTest {
 	private Instance<VetoedBean> vetoedBean;
 
 	@Test
-	public void testInjectionUsingAnnotation() {
+	void testInjectionUsingAnnotation() {
 		Assertions.assertInstanceOf(Bean.class, bean1);
 		Assertions.assertInstanceOf(Bean.class, bean2);
 		// Each injection of a bean create a new instance
@@ -70,7 +70,7 @@ public class InjectionTest extends WeldTest {
 	}
 
 	@Test
-	public void testInjectionUsingProgrammingLookup() {
+	void testInjectionUsingProgrammingLookup() {
 		Assertions.assertTrue(bean1Instance.isResolvable());
 		Assertions.assertTrue(bean2Instance.isResolvable());
 
@@ -85,7 +85,7 @@ public class InjectionTest extends WeldTest {
 	}
 
 	@Test
-	public void testInjectionUsingContainer() {
+	void testInjectionUsingContainer() {
 		final Instance<Bean> bean1Instance = weld.container().select(Bean.class);
 		final Instance<Bean> bean2Instance = weld.container().select(Bean.class);
 
@@ -103,7 +103,7 @@ public class InjectionTest extends WeldTest {
 	}
 
 	@Test
-	public void testSingletonInjection() {
+	void testSingletonInjection() {
 		Assertions.assertInstanceOf(SingletonBean.class, singletonBean1);
 		Assertions.assertInstanceOf(SingletonBean.class, singletonBean2);
 		// Because a Singleton has only one instance, the container inject the same instance of a Singleton
@@ -112,21 +112,21 @@ public class InjectionTest extends WeldTest {
 	}
 
 	@Test
-	public void AmbigousDependenciesTest() {
+	void AmbigousDependenciesTest() {
 		// Ambigous because object is the superclass of everything
 		Assertions.assertFalse(ambigousBean.isResolvable());
 		Assertions.assertTrue(ambigousBean.isAmbiguous());
 	}
 
 	@Test
-	public void unsatisfiedDependenciesTest() {
+	void unsatisfiedDependenciesTest() {
 		// Unsatisfied because no bean has these both qualifiers
 		Assertions.assertFalse(weld.container().select(AnnotationUtils.toAnnotation(Asynchronous.class), AnnotationUtils.toAnnotation(Reliable.class)).isResolvable());
 		Assertions.assertTrue(weld.container().select(AnnotationUtils.toAnnotation(Asynchronous.class), AnnotationUtils.toAnnotation(Reliable.class)).isUnsatisfied());
 	}
 
 	@Test
-	public void testVetoedPackage() {
+	void testVetoedPackage() {
 		Assertions.assertFalse(CDI.current().select(VetoedClassA.class).isResolvable());
 		Assertions.assertFalse(CDI.current().select(VetoedClassB.class).isResolvable());
 		Assertions.assertFalse(CDI.current().select(VetoedClassC.class).isResolvable());
@@ -141,7 +141,7 @@ public class InjectionTest extends WeldTest {
 	}
 
 	@Test
-	public void testVetoedClass() {
+	void testVetoedClass() {
 		// This injection is not ambigous due to the use of the Vetoed which exclude the package from the bean management by the container
 		Assertions.assertInstanceOf(NotVetoedBean.class, notVetoedBean);
 		Assertions.assertFalse(vetoedBean.isResolvable());
@@ -150,7 +150,7 @@ public class InjectionTest extends WeldTest {
 	}
 
 	@Test
-	public void testInitializers() {
+	void testInitializers() {
 		// Default constructor is not called as there is another constructor annotated @Inject
 		Assertions.assertNull(initBean.getDefaultConstructorBean());
 
@@ -182,7 +182,7 @@ public class InjectionTest extends WeldTest {
 	}
 
 	@Test
-	public void testMultiContainer() {
+	void testMultiContainer() {
 		final WeldContainer container1 = new Weld().enableDiscovery().initialize();
 		final WeldContainer container2 = new Weld().enableDiscovery().initialize();
 

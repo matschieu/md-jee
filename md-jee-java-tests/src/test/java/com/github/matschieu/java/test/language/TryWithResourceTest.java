@@ -20,7 +20,7 @@ class MyResource implements Closeable {
 
 	private final StatusHolder statusHolder;
 
-	public MyResource(StatusHolder statusHolder) throws IOException {
+	MyResource(StatusHolder statusHolder) throws IOException {
 		this.statusHolder = statusHolder;
 		this.statusHolder.status = Status.OPENED;
 	}
@@ -31,10 +31,10 @@ class MyResource implements Closeable {
 	}
 }
 
-public class TryWithResourceTest {
+class TryWithResourceTest {
 
 	@Test
-	public void testTryWithResource() {
+	void testTryWithResource() {
 		final StatusHolder statusHolder = new StatusHolder();
 
 		try(MyResource myResource = new MyResource(statusHolder)) {

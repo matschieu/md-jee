@@ -13,7 +13,7 @@ import com.github.matschieu.jakartaee.cdi.payment.SynchronousPaymentProcessor;
 
 import jakarta.inject.Inject;
 
-public class QualifierTest extends WeldTest {
+class QualifierTest extends WeldTest {
 
 	@Inject
 	@Synchronous
@@ -33,7 +33,7 @@ public class QualifierTest extends WeldTest {
 	PaymentProcessor reliableSynchronousPaymentProcessor;
 
 	@Test
-	public void testInjectionWithQualifier() {
+	void testInjectionWithQualifier() {
 		Assertions.assertInstanceOf(SynchronousPaymentProcessor.class, syncPaymentProcessor);
 		Assertions.assertInstanceOf(AsynchronousPaymentProcessor.class, asyncPaymentProcessor);
 		Assertions.assertInstanceOf(SynchronousPaymentProcessor.class, reliablePaymentProcessor);

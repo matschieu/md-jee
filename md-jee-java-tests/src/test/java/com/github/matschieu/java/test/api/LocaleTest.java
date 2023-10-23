@@ -4,10 +4,10 @@ import java.util.Locale;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LocaleTest {
+class LocaleTest {
 
 	@Test
-	public void testGetCountry() {
+	void testGetCountry() {
 		final String country = "fr";
 		boolean found = false;
 

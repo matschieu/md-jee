@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class FilesTest {
+class FilesTest {
 
 	private static final Path FILE1 = Paths.get("target/file1.txt");
 
 	@BeforeEach
-	public void init() throws IOException {
+	void init() throws IOException {
 		if (Files.exists(FILE1)) {
 			Files.delete(FILE1);
 		}
@@ -25,7 +25,7 @@ public class FilesTest {
 	}
 
 	@Test
-	public void testWriteDefault( ) throws IOException {
+	void testWriteDefault( ) throws IOException {
 		for(int i = 0; i < 5; i++) {
 			// No option, the line won't be appended to the file but will replace the precedent
 			Files.write(FILE1, ("line" + i + System.getProperty("line.separator")).getBytes());
@@ -38,7 +38,7 @@ public class FilesTest {
 	}
 
 	@Test
-	public void testWriteAppend( ) throws IOException {
+	void testWriteAppend( ) throws IOException {
 		for(int i = 0; i < 5; i++) {
 			Files.write(FILE1, ("line" + i + System.getProperty("line.separator")).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 		}

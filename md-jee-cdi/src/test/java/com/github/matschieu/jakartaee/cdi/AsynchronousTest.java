@@ -11,13 +11,13 @@ import com.github.matschieu.jakartaee.cdi.bean.AsynchronousBean;
 
 import jakarta.inject.Inject;
 
-public class AsynchronousTest extends WeldTest {
+class AsynchronousTest extends WeldTest {
 
 	@Inject
 	private AsynchronousBean asyncBean;
 
 	@Test
-	public void testAsynchronousBean() throws InterruptedException, ExecutionException {
+	void testAsynchronousBean() throws InterruptedException, ExecutionException {
 		Future<Boolean> future1 = asyncBean.process(1000);
 		Future<Boolean> future2 = asyncBean.process(0);
 

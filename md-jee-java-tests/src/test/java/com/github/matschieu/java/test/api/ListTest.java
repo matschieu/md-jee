@@ -5,10 +5,10 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ListTest {
+class ListTest {
 
 	@Test
-	public void testList1() {
+	void testList1() {
 		final List<String> list = new ArrayList<String>();
 
 		String str = "1";
@@ -24,7 +24,7 @@ public class ListTest {
 	}
 
 	@Test
-	public void testList2() {
+	void testList2() {
 		final List<String> list = new ArrayList<String>();
 
 		list.add("toto");
@@ -38,18 +38,18 @@ public class ListTest {
 
 		private String value;
 
-		public String getValue() {
+		String getValue() {
 			return value;
 		}
 
-		public void setValue(String value) {
+		void setValue(String value) {
 			this.value = value;
 		}
 
 	}
 
 	@Test
-	public void testCopyList() {
+	void testCopyList() {
 		final List<MyBean> list1 = new ArrayList<MyBean>();
 
 		for (int i = 0; i < 20; i++) {

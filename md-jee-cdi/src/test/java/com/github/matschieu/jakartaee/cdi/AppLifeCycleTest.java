@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import com.github.matschieu.WeldTest;
 import com.github.matschieu.jakartaee.cdi.bean.AppLifeCycleObserverBean;
 
-public class AppLifeCycleTest extends WeldTest {
+class AppLifeCycleTest extends WeldTest {
 
 	@BeforeAll
-	public static void beforeContainerStart() {
+	static void beforeContainerStart() {
 		AppLifeCycleObserverBean.reset();
 		Assertions.assertEquals(0, AppLifeCycleObserverBean.getAppInitialized());
 		Assertions.assertEquals(0, AppLifeCycleObserverBean.getAppBeforeDestroyed());
@@ -19,14 +19,14 @@ public class AppLifeCycleTest extends WeldTest {
 	}
 
 	@Test
-	public void testLifeCycleEvent() {
+	void testLifeCycleEvent() {
 		Assertions.assertEquals(1, AppLifeCycleObserverBean.getAppInitialized());
 		Assertions.assertEquals(0, AppLifeCycleObserverBean.getAppBeforeDestroyed());
 		Assertions.assertEquals(0, AppLifeCycleObserverBean.getAppDestroyed());
 	}
 
 	@AfterAll
-	public static void afterContainerStop() {
+	static void afterContainerStop() {
 		Assertions.assertEquals(1, AppLifeCycleObserverBean.getAppInitialized());
 		Assertions.assertEquals(1, AppLifeCycleObserverBean.getAppBeforeDestroyed());
 		Assertions.assertEquals(1, AppLifeCycleObserverBean.getAppDestroyed());

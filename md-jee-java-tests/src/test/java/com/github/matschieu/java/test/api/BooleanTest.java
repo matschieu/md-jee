@@ -3,10 +3,10 @@ package com.github.matschieu.java.test.api;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class BooleanTest {
+class BooleanTest {
 
 	@Test
-	public void testParse() {
+	void testParse() {
 		Assertions.assertTrue(Boolean.parseBoolean("TRUE"));
 		Assertions.assertTrue(Boolean.parseBoolean("true"));
 		Assertions.assertFalse(Boolean.parseBoolean("FALSE"));

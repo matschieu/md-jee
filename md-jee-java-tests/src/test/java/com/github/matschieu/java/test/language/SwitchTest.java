@@ -3,13 +3,13 @@ package com.github.matschieu.java.test.language;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class SwitchTest {
+class SwitchTest {
 
 	enum MyEnum { ENUM1, ENUM2 };
 
 	@SuppressWarnings("null")
 	@Test
-	public void testSwitchWithNull() {
+	void testSwitchWithNull() {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			final MyEnum myEnum = null;
 

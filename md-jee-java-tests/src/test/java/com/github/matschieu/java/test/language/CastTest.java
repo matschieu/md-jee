@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class CastTest {
+class CastTest {
 
 	@Test
-	public void testCast() {
+	void testCast() {
 		final String str = null;
 		final Object obj = str;
 
@@ -19,7 +19,7 @@ public class CastTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"toto"})
-	public void testBadCast(Object o) {
+	void testBadCast(Object o) {
 		Assertions.assertThrows(ClassCastException.class, () -> {
 			@SuppressWarnings("unused")
 			Integer i = (Integer)o;

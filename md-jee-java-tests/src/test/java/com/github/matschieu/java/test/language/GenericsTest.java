@@ -7,7 +7,7 @@ abstract class GenericA<T, U> {
 
 	private final Class<?> tClass = (Class<?>)((java.lang.reflect.ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
-	public GenericA() { }
+	GenericA() { }
 
 	String getTClass() {
 		return tClass.getSimpleName();
@@ -15,15 +15,15 @@ abstract class GenericA<T, U> {
 }
 
 class GenericB extends GenericA<Short, String> {
-	public GenericB() {
+	GenericB() {
 		super();
 	}
 }
 
-public class GenericsTest {
+class GenericsTest {
 
 	@Test
-	public void testGenerics() {
+	void testGenerics() {
 		Assertions.assertEquals("Short", new GenericB().getTClass());
 	}
 }

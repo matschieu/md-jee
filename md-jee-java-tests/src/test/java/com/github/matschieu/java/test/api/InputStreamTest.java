@@ -7,10 +7,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class InputStreamTest {
+class InputStreamTest {
 
 	@Test
-	public void testInputStream() throws IOException {
+	void testInputStream() throws IOException {
 		final byte[] bytes = "toto".getBytes();
 		final InputStream is = new ByteArrayInputStream(bytes);
 

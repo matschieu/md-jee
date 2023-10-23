@@ -3,10 +3,10 @@ package com.github.matschieu.java.test.api;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ThreadTest {
+class ThreadTest {
 
 	@Test
-	public void testThreadWithTimeout() {
+	void testThreadWithTimeout() {
 		final Thread t = new Thread(() -> {
 			try {
 				Thread.sleep(5000);

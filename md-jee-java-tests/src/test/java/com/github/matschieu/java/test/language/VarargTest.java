@@ -3,15 +3,15 @@ package com.github.matschieu.java.test.language;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class VarargTest {
+class VarargTest {
 
-	public int countParam(String... args) {
+	int countParam(String... args) {
 		Assertions.assertNotNull(args);
 		return args.length;
 	}
 
 	@Test
-	public void testVararg() {
+	void testVararg() {
 		Assertions.assertEquals(0, countParam());
 		Assertions.assertEquals(1, countParam((String)null));
 		Assertions.assertEquals(2, countParam((String)null, (String)null));
@@ -20,7 +20,7 @@ public class VarargTest {
 	}
 
 	@Test
-	public void testNullVararg() {
+	void testNullVararg() {
 		Assertions.assertThrows(AssertionError.class, () -> countParam(null));
 	}
 

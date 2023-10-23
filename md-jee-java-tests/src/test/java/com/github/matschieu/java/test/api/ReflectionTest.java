@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-public class ReflectionTest {
+class ReflectionTest {
 
 	public Boolean bool;
 	public String str;
 
 	@Test
-	public void testReflection() throws Exception {
+	void testReflection() throws Exception {
 		final List<Class<?>> primitiveObjects = Arrays.asList(new Class<?>[] {Integer.class, Short.class, Long.class, Double.class, Float.class, Boolean.class});
 
 		final Field fbool = ReflectionTest.class.getField("bool");
@@ -40,6 +40,25 @@ public class ReflectionTest {
 
 		Assertions.assertTrue(miscTest.bool);
 		Assertions.assertEquals("TrUe", miscTest.str);
+	}
+
+	@Test
+	void testFieldAccess() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		@SuppressWarnings("unused")
+		final Object obj = new Object() {
+			private static final Integer STATIC_VALUE = 01;
+			private final Integer value = 10;
+		};
+
+		Field valueField = obj.getClass().getDeclaredField("value");
+		Assertions.assertTrue(valueField.canAccess(obj));
+		Assertions.assertEquals(10, valueField.get(obj));
+
+		valueField = obj.getClass().getDeclaredField("STATIC_VALUE");
+		valueField.setAccessible(false);
+		System.out.println(valueField.canAccess(null));
+		Assertions.assertTrue(valueField.canAccess(null));
+		Assertions.assertEquals(1, valueField.get(null));
 	}
 
 }

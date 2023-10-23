@@ -13,7 +13,7 @@ class Bean {
 
 	private Bean bean;
 
-	public Bean() {
+	Bean() {
 		this.a = 1;
 		this.b = 2;
 		if (cpt++ < 2) this.bean = new Bean();
@@ -51,12 +51,12 @@ class Bean {
 
 class Logger {
 
-	public static String log(String message) {
+	static String log(String message) {
 		final StackTraceElement ste = Thread.currentThread().getStackTrace()[2];
 		return String.format("[%s] [%s] %s", ste.getClassName(), ste.getMethodName(), message);
 	}
 
-	public static String logBeanFields(Object input, String fields) throws NoSuchMethodException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException {
+	static String logBeanFields(Object input, String fields) throws NoSuchMethodException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException {
 		final StringBuffer strBuffer = new StringBuffer();
 
 		for(final String field : fields.split("\\,")) {
@@ -104,10 +104,10 @@ class Logger {
 
 }
 
-public class BeanFieldLogTest {
+class BeanFieldLogTest {
 
 	@Test
-	public void testLogging() throws Exception {
+	void testLogging() throws Exception {
 		final Bean bean = new Bean();
 		Assertions.assertEquals("a: 1, b: 2, bean.bean.a: 1, bean.bean.addition: 3", Logger.logBeanFields(bean, "a,b,bean.bean.a,bean.bean.addition()"));
 		Assertions.assertEquals(String.format("[%s] [testLogging] this is a message!", this.getClass().getName()), Logger.log("this is a message!"));

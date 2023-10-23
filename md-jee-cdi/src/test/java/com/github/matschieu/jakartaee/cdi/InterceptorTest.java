@@ -8,13 +8,13 @@ import com.github.matschieu.jakartaee.cdi.interceptor.InterceptedBean;
 
 import jakarta.inject.Inject;
 
-public class InterceptorTest extends WeldTest {
+class InterceptorTest extends WeldTest {
 
 	@Inject
 	private InterceptedBean bean;
 
 	@Test
-	public void testInterceptor() {
+	void testInterceptor() {
 		Assertions.assertEquals("raBooF", bean.reverseString("FooBar"));
 	}
 }

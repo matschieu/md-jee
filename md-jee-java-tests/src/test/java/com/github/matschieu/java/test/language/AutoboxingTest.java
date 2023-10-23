@@ -3,10 +3,10 @@ package com.github.matschieu.java.test.language;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class AutoboxingTest {
+class AutoboxingTest {
 
 	@Test
-	public void testNullAutoboxing() {
+	void testNullAutoboxing() {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			final Integer a = null;
 			@SuppressWarnings({ "null", "unused" })
@@ -15,7 +15,7 @@ public class AutoboxingTest {
 	}
 
 	@Test
-	public void testAutoboxing() {
+	void testAutoboxing() {
 		final Integer a = 1;
 		final int b = a;
 		Assertions.assertEquals(1, b);

@@ -15,7 +15,7 @@ import jakarta.enterprise.inject.UnsatisfiedResolutionException;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-public class BuiltInQualifiersTest extends WeldTest {
+class BuiltInQualifiersTest extends WeldTest {
 
 	@Inject
 	private Bean bean;
@@ -58,7 +58,7 @@ public class BuiltInQualifiersTest extends WeldTest {
 	private Instance<NamedBean> badNamedBeanInstance;
 
 	@Test
-	public void testInjectionWithDefaultQualifiersUsingAnnotations() {
+	void testInjectionWithDefaultQualifiersUsingAnnotations() {
 		// Qualifiers @Any and @Default are implicit and added by default to each bean
 		Assertions.assertInstanceOf(Bean.class, bean);
 		Assertions.assertInstanceOf(Bean.class, beanWithDefault);
@@ -68,7 +68,7 @@ public class BuiltInQualifiersTest extends WeldTest {
 	}
 
 	@Test
-	public void testInjectionWithDefaultQualifiersUsingProgrammingLookup() {
+	void testInjectionWithDefaultQualifiersUsingProgrammingLookup() {
 		// Qualifiers @Any and @Default are implicit and added by default to each bean
 		Assertions.assertInstanceOf(Bean.class, beanInstance.get());
 		Assertions.assertInstanceOf(Bean.class, beanWithDefaultInstance.get());
@@ -78,7 +78,7 @@ public class BuiltInQualifiersTest extends WeldTest {
 	}
 
 	@Test
-	public void testInjectionWithDefaultQualifiersUsingContainer() {
+	void testInjectionWithDefaultQualifiersUsingContainer() {
 		// Qualifiers @Any and @Default are implicit and added by default to each bean
 		Assertions.assertInstanceOf(Bean.class, weld.container().select(Bean.class).get());
 		Assertions.assertInstanceOf(Bean.class, weld.container().select(Bean.class, AnnotationUtils.toAnnotation(Default.class)).get());
@@ -88,7 +88,7 @@ public class BuiltInQualifiersTest extends WeldTest {
 	}
 
 	@Test
-	public void testInjectionWithName() {
+	void testInjectionWithName() {
 		Assertions.assertInstanceOf(NamedBean.class, namedBean);
 		// If no name binds with the name defined at the injection point, then an exception is thrown when injecting
 		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> badNamedBeanInstance.get());

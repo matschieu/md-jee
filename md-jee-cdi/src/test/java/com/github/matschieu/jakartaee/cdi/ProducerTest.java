@@ -16,7 +16,7 @@ import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-public class ProducerTest extends WeldTest {
+class ProducerTest extends WeldTest {
 
 	@Inject
 	@Random
@@ -46,7 +46,7 @@ public class ProducerTest extends WeldTest {
 	private Instance<ProducedBean> producedBeanInstance;
 
 	@Test
-	public void testPrimitiveProducer() {
+	void testPrimitiveProducer() {
 		// Use the producer to get a random integer
 		Assertions.assertNotNull(randomInteger);
 		Assertions.assertNotEquals(0, randomInteger.intValue());
@@ -60,7 +60,7 @@ public class ProducerTest extends WeldTest {
 	}
 
 	@Test
-	public void testProducer() {
+	void testProducer() {
 		PaymentProcessorBuilder.setSynchronous(true);
 		Assertions.assertInstanceOf(SynchronousPaymentProcessor.class, paymentProcessor.get());
 
@@ -69,7 +69,7 @@ public class ProducerTest extends WeldTest {
 	}
 
 	@Test
-	public void testDisposer() {
+	void testDisposer() {
 		// When instanciated outside the container, producer and disposer are not called
 		ProducedBean localBean = new ProducedBean();
 		Assertions.assertFalse(localBean.isProduced());
