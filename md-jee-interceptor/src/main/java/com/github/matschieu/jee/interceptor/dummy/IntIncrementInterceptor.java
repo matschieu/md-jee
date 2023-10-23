@@ -11,8 +11,8 @@ public class IntIncrementInterceptor {
 	public Object interceptOrder(final InvocationContext ctx) throws Exception {
 		System.out.println(this.getClass().getSimpleName() + ": Intercept " + ctx.getMethod().getName());
 		final Object output = ctx.proceed();
-		if (output instanceof Integer) {
-			return ((Integer) output).intValue() + 1;
+		if (output instanceof final Integer integer) {
+			return integer.intValue() + 1;
 		}
 		return output;
 	}

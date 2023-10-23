@@ -11,7 +11,7 @@ import jakarta.interceptor.InvocationContext;
 @Interceptor
 public class ValidationInterceptor {
 
-	private void checkObject(final Object obj) throws Exception {
+	private void checkObject(final Object obj) throws IllegalArgumentException, IllegalAccessException, NullElementException {
 		if ((obj == null) || (obj instanceof String)) {
 			return;
 		}
@@ -27,7 +27,7 @@ public class ValidationInterceptor {
 		}
 	}
 
-	private void checkFieldAnnotation(final String fieldName, final Annotation[] annotations, final Object value) throws Exception {
+	private void checkFieldAnnotation(final String fieldName, final Annotation[] annotations, final Object value) throws NullElementException {
 		for (final Annotation annotation : annotations) {
 			if (annotation.annotationType() == NotNullElement.class && value == null) {
 				throw new NullElementException(fieldName + " is null");

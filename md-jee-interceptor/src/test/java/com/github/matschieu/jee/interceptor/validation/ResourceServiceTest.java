@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import jakarta.inject.Inject;
 
 @EnableWeld
-public class ResourceServiceTest {
+class ResourceServiceTest {
 
 	@WeldSetup
 	public WeldInitiator weld = WeldInitiator.from(ResourceService.class, ResourceServiceImpl.class).build();
@@ -20,7 +20,7 @@ public class ResourceServiceTest {
 	private ResourceService resourceService;
 
 	@Test
-	public void testMyServiceCreateResource1() {
+	void testMyServiceCreateResource1() {
 		try {
 			this.resourceService.createResource(null, "", "");
 			fail();
@@ -41,7 +41,7 @@ public class ResourceServiceTest {
 	}
 
 	@Test
-	public void testMyServiceCreateResource2() {
+	void testMyServiceCreateResource2() {
 		try {
 			this.resourceService.createResource(new Resource(null, "", ""));
 			fail();
@@ -62,7 +62,7 @@ public class ResourceServiceTest {
 	}
 
 	@Test
-	public void testMyServiceGetResource() {
+	void testMyServiceGetResource() {
 		Resource resource;
 
 		try {
@@ -82,7 +82,7 @@ public class ResourceServiceTest {
 	}
 
 	@Test
-	public void testMyServiceDeleteResource() {
+	void testMyServiceDeleteResource() {
 		try {
 			this.resourceService.deleteResource(null);
 			fail();

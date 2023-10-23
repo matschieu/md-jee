@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import jakarta.inject.Inject;
 
 @EnableWeld
-public class MyServiceTest {
+class MyServiceTest {
 
 	@WeldSetup
 	public WeldInitiator weld = WeldInitiator.from(MyService.class, MyServiceImpl.class).build();
@@ -18,7 +18,7 @@ public class MyServiceTest {
 	private MyService myService;
 
 	@Test
-	public void testMyService() {
+	void testMyService() {
 		Assertions.assertEquals(2, this.myService.getInt());
 		Assertions.assertEquals(Integer.valueOf(2), this.myService.getInteger());
 		Assertions.assertEquals("{[MyString]}", this.myService.getString());
