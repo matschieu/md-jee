@@ -81,41 +81,6 @@
 				<version>5.8.1</version>
 				<scope>test</scope>
 			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>1.6.0.Final</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian.container</groupId>
-				<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-				<version>1.0.2</version>
-				<scope>test</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.glassfish.main.extras</groupId>
-				<artifactId>glassfish-embedded-all</artifactId>
-				<version>5.1.0</version>
-				<scope>provided</scope>
-			</dependency>
-			 
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.13.2</version>
-				<scope>test</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>xerces</groupId>
-				<artifactId>xercesImpl</artifactId>
-				<version>2.12.1</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	
