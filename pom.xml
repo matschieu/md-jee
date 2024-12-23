@@ -14,6 +14,7 @@
 		<module>md-jee-cdi</module>
 		<module>md-jee-interceptor</module>
 		<module>md-jee-validation</module>
+		<module>md-jee-jax-rs</module>
 		<module>md-jee-ejb</module>
 		<module>md-jee-java-tests</module>
 	</modules>
@@ -22,6 +23,18 @@
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Dependencies version -->		
+		<jakartaee.version>10.0.0</jakartaee.version>
+		<hibernate.version>8.0.1.Final</hibernate.version>
+		<expressly.version>6.0.0-M1</expressly.version>
+		<weld.version>6.0.0.Final</weld.version>
+		<weld-se.version>2.4.8.Final</weld-se.version>
+		<weld-junit5.version>4.0.3.Final</weld-junit5.version>
+		<junit.version>5.11.4</junit.version>
+		<assertj.version>3.27.0</assertj.version>
+		<mockito.version>5.14.2</mockito.version>
+		<jersey.version>3.1.9</jersey.version>
+		<jaxb.version>4.0.5</jaxb.version>
 	</properties>
 
 	<dependencyManagement>
@@ -29,58 +42,118 @@
 			<dependency>
 				<groupId>jakarta.platform</groupId>
 				<artifactId>jakarta.jakartaee-api</artifactId>
-				<version>10.0.0</version>
+				<version>${jakartaee.version}</version>
 				<scope>provided</scope>
 			</dependency>
-			
+
+			<!-- JakartaEE implementations -->
+
 			<dependency>
 				<groupId>org.hibernate.validator</groupId>
 				<artifactId>hibernate-validator</artifactId>
-				<version>8.0.1.Final</version>
-				<scope>test</scope>
+				<version>${hibernate.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.glassfish.expressly</groupId>
 				<artifactId>expressly</artifactId>
-				<version>6.0.0-M1</version>
-				<scope>test</scope>
+				<version>${expressly.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.jboss.weld.se</groupId>
 				<artifactId>weld-se</artifactId>
-				<version>2.4.8.Final</version>
-				<scope>test</scope>
+				<version>${weld-se.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.jboss.weld</groupId>
 				<artifactId>weld-core-impl</artifactId>
-				<version>6.0.0.Final</version>
-				<scope>test</scope>
+				<version>${weld.version}</version>
+				<scope>provided</scope>
 			</dependency>
+
+			<!-- Test dependencies -->
 
 			<dependency>
 				<groupId>org.jboss.weld</groupId>
 				<artifactId>weld-junit5</artifactId>
-				<version>4.0.3.Final</version>
+				<version>${weld-junit5.version}</version>
 				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-engine</artifactId>
-				<version>5.11.4</version>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-params</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>${assertj.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.jersey.test-framework</groupId>
+				<artifactId>jersey-test-framework-core</artifactId>
+				<version>${jersey.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.jersey.test-framework.providers</groupId>
+				<artifactId>jersey-test-framework-provider-grizzly2</artifactId>
+				<version>${jersey.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.jersey.inject</groupId>
+				<artifactId>jersey-hk2</artifactId>
+				<version>${jersey.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.jersey.media</groupId>
+				<artifactId>jersey-media-json-jackson</artifactId>
+				<version>${jersey.version}</version>
 				<scope>test</scope>
 			</dependency>
 			
 			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-params</artifactId>
-				<version>5.11.4</version>
+				<groupId>org.glassfish.jersey.media</groupId>
+				<artifactId>jersey-media-jaxb</artifactId>
+				<version>${jersey.version}</version>
 				<scope>test</scope>
 			</dependency>
+			
+			<dependency>
+				<groupId>org.glassfish.jaxb</groupId>
+				<artifactId>jaxb-runtime</artifactId>
+				<version>${jaxb.version}</version>
+				<scope>test</scope>
+			</dependency>			
 		</dependencies>
 	</dependencyManagement>
 	
