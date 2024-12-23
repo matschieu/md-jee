@@ -36,14 +36,14 @@
 			<dependency>
 				<groupId>org.hibernate.validator</groupId>
 				<artifactId>hibernate-validator</artifactId>
-				<version>8.0.0.Final</version>
+				<version>8.0.1.Final</version>
 				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.glassfish.expressly</groupId>
 				<artifactId>expressly</artifactId>
-				<version>5.0.0</version>
+				<version>6.0.0-M1</version>
 				<scope>test</scope>
 			</dependency>
 
@@ -57,28 +57,28 @@
 			<dependency>
 				<groupId>org.jboss.weld</groupId>
 				<artifactId>weld-core-impl</artifactId>
-				<version>5.1.0.Final</version>
+				<version>6.0.0.Final</version>
 				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.jboss.weld</groupId>
 				<artifactId>weld-junit5</artifactId>
-				<version>4.0.0.Final</version>
+				<version>4.0.3.Final</version>
 				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-engine</artifactId>
-				<version>5.8.1</version>
+				<version>5.11.4</version>
 				<scope>test</scope>
 			</dependency>
 			
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-params</artifactId>
-				<version>5.8.1</version>
+				<version>5.11.4</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
