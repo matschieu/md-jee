@@ -1,6 +1,7 @@
 package com.github.matschieu.jakartaee.cdi;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -15,6 +16,7 @@ class InterceptorTest extends WeldTest {
 
 	@Test
 	void testInterceptor() {
-		Assertions.assertEquals("raBooF", bean.reverseString("FooBar"));
+		assertThat(bean.reverseString("FooBar")).isEqualTo("raBooF");
 	}
+
 }

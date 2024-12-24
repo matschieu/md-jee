@@ -1,6 +1,7 @@
 package com.github.matschieu.jakartaee.cdi;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -48,44 +49,44 @@ class ProducerTest extends WeldTest {
 	@Test
 	void testPrimitiveProducer() {
 		// Use the producer to get a random integer
-		Assertions.assertNotNull(randomInteger);
-		Assertions.assertNotEquals(0, randomInteger.intValue());
+		assertThat(randomInteger).isNotNull();
+		assertThat(randomInteger.intValue()).isNotZero();
 		// Use the producer to get a random integer converted to int by autoboxing
-		Assertions.assertNotEquals(0, randomInt);
-		Assertions.assertNull(nullInteger);
+		assertThat(randomInt).isNotZero();
+		assertThat(nullInteger).isNull();
 		// The producer returns a null so the container inject the primitive type’s default value to avoid NPE
-		Assertions.assertEquals(0, nullInt);
+		assertThat(nullInt).isZero();
 		// The producer can simply return a primitive type
-		Assertions.assertNotEquals(0.0, randomDouble);
+		assertThat(randomDouble).isNotEqualTo(0.0);
 	}
 
 	@Test
 	void testProducer() {
 		PaymentProcessorBuilder.setSynchronous(true);
-		Assertions.assertInstanceOf(SynchronousPaymentProcessor.class, paymentProcessor.get());
+		assertThat(paymentProcessor.get()).isInstanceOf(SynchronousPaymentProcessor.class);
 
 		PaymentProcessorBuilder.setSynchronous(false);
-		Assertions.assertInstanceOf(AsynchronousPaymentProcessor.class, paymentProcessor.get());
+		assertThat(paymentProcessor.get()).isInstanceOf(AsynchronousPaymentProcessor.class);
 	}
 
 	@Test
 	void testDisposer() {
 		// When instanciated outside the container, producer and disposer are not called
 		ProducedBean localBean = new ProducedBean();
-		Assertions.assertFalse(localBean.isProduced());
-		Assertions.assertFalse(localBean.isDisposed());
+		assertThat(localBean.isProduced()).isFalse();
+		assertThat(localBean.isDisposed()).isFalse();
 
 		producedBeanInstance.destroy(localBean);
 
 		// The producer is called when injecting the bean
 		ProducedBean bean = producedBeanInstance.get();
-		Assertions.assertNotNull(bean);
-		Assertions.assertTrue(bean.isProduced());
-		Assertions.assertFalse(bean.isDisposed());
+		assertThat(bean).isNotNull();
+		assertThat(bean.isProduced()).isTrue();
+		assertThat(bean.isDisposed()).isFalse();
 
 		// The container destroy the bean, the disposer is called
 		producedBeanInstance.destroy(bean);
-		Assertions.assertTrue(bean.isDisposed());
+		assertThat(bean.isDisposed()).isTrue();
 
 		// Do nothing, the bean has already been destroyed by the container
 		// The instance of bean is still existing in memory but is not managed anymore by the container

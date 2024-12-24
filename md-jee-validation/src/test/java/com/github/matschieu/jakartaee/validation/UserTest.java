@@ -1,12 +1,13 @@
 package com.github.matschieu.jakartaee.validation;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import jakarta.validation.ConstraintViolation;
@@ -33,17 +34,17 @@ public class UserTest {
 	}
 
 	private void checkConstraintViolations(String field, List<Class<?>> expectedConstraintViolations, Set<ConstraintViolation<User>> violations) {
-		Assertions.assertNotNull(violations);
-		Assertions.assertEquals(expectedConstraintViolations.size(), violations.size());
+		assertThat(violations).isNotNull();
+		assertThat(violations.size()).isEqualTo(expectedConstraintViolations.size());
 
 		List<String> constraints = new ArrayList<>();
 
 		violations.stream().forEach(v -> {
 			constraints.add(getAnnotationName(v));
-			Assertions.assertEquals(field, v.getPropertyPath().toString());
+			assertThat(v.getPropertyPath().toString()).isEqualTo(field);
 		});
 
-		expectedConstraintViolations.stream().forEach(c -> Assertions.assertTrue(constraints.contains(c.getCanonicalName())));
+		expectedConstraintViolations.stream().forEach(c -> assertThat(constraints).contains(c.getCanonicalName()));
 
 		violations.stream().forEach(System.out::println);
 	}
@@ -62,12 +63,10 @@ public class UserTest {
 
 	@Test
 	public void testValidUser() {
-		User user = getValidUser();
+		Set<ConstraintViolation<User>> violations = validator.validate(getValidUser());
 
-		Set<ConstraintViolation<User>> violations = validator.validate(user);
-
-		Assertions.assertNotNull(violations);
-		Assertions.assertTrue(violations.isEmpty());
+		assertThat(violations).isNotNull();
+		assertThat(violations).isEmpty();
 	}
 
 	@Test

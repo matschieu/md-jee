@@ -1,7 +1,8 @@
 package com.github.matschieu.jakartaee.cdi;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -24,28 +25,25 @@ class CallbackTest extends WeldTest {
 	@BeforeAll
 	static void checkCallbackState() {
 		// At this step the container is not started, it has created no instance and the counter is 0
-		Assertions.assertEquals(0, CallbackBean.getAliveInstances());
+		assertThat(CallbackBean.getAliveInstances()).isZero();
 	}
 
 	@Test
 	void testPostConstruct() {
 		// At this step the container has created 3 instances
-		Assertions.assertEquals(3, CallbackBean.getAliveInstances());
+		assertThat(CallbackBean.getAliveInstances()).isEqualTo(3);
 
 		CallbackBean bean = new CallbackBean();
 		// A "new" only process the constructor, not the @PostConstruct method managed by the container
 		// So instance number is not initialized and the counter of alive instance is not incremented
-		Assertions.assertNull(bean.getInstanceNumber());
-		Assertions.assertEquals(3, CallbackBean.getAliveInstances());
+		assertThat(bean.getInstanceNumber()).isNull();
+		assertThat(CallbackBean.getAliveInstances()).isEqualTo(3);
 
 		// The container manage the bean and process the @PostConstruct method (after the constructor)
 		// so each injected bean has an instance number (injection are done in the order of field declarations)
-		Assertions.assertNotNull(bean1.getInstanceNumber());
-		Assertions.assertNotNull(bean2.getInstanceNumber());
-		Assertions.assertNotNull(bean3.getInstanceNumber());
-		Assertions.assertEquals(0, bean1.getInstanceNumber());
-		Assertions.assertEquals(1, bean2.getInstanceNumber());
-		Assertions.assertEquals(2, bean3.getInstanceNumber());
+		assertThat(bean1.getInstanceNumber()).isNotNull().isEqualTo(0);
+		assertThat(bean2.getInstanceNumber()).isNotNull().isEqualTo(1);
+		assertThat(bean3.getInstanceNumber()).isNotNull().isEqualTo(2);
 	}
 
 	@AfterAll
@@ -53,7 +51,7 @@ class CallbackTest extends WeldTest {
 		// Her is the proof that PreDestroy method has been called when the cointainer was stopped
 		// Each predestroy has decreased the counter of alive instances
 		// The container has created 3 instances and destroyed the sames
-		Assertions.assertEquals(0, CallbackBean.getAliveInstances());
+		assertThat(CallbackBean.getAliveInstances()).isZero();
 	}
 
 }

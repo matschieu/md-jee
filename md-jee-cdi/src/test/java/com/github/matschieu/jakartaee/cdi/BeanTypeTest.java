@@ -1,6 +1,8 @@
 package com.github.matschieu.jakartaee.cdi;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -29,16 +31,16 @@ class BeanTypeTest extends WeldTest {
 
 	@Test
 	void testInjectionUsingAnnotation() {
-		Assertions.assertInstanceOf(BookShop.class, bookshop);
-		Assertions.assertInstanceOf(BookShop.class, business);
-		Assertions.assertInstanceOf(BookShop.class, shop);
+		assertThat(bookshop).isInstanceOf(BookShop.class);
+		assertThat(business).isInstanceOf(BookShop.class);
+		assertThat(shop).isInstanceOf(BookShop.class);
 	}
 
 	@Test
 	void testInjectionUsingContainer() {
-		Assertions.assertInstanceOf(BookShop.class, weld.container().select(BookShop.class).get());
-		Assertions.assertInstanceOf(BookShop.class, weld.container().select(Business.class).get());
-		Assertions.assertInstanceOf(BookShop.class, weld.container().select(new TypeLiteral<Shop<Book>>() {}).get());
+		assertThat(weld.container().select(BookShop.class).get()).isInstanceOf(BookShop.class);
+		assertThat(weld.container().select(Business.class).get()).isInstanceOf(BookShop.class);
+		assertThat(weld.container().select(new TypeLiteral<Shop<Book>>() {}).get()).isInstanceOf(BookShop.class);
 	}
 
 	@Inject
@@ -53,9 +55,9 @@ class BeanTypeTest extends WeldTest {
 	@Test
 	void testTypedInjectionUsingAnnotation() {
 		// TypedBookShop has restricted type to TypedShop, it can't be injected as other type
-		Assertions.assertThrows(Exception.class, () -> typedBookshop.get());
-		Assertions.assertThrows(Exception.class, () -> typedBusiness.get());
-		Assertions.assertInstanceOf(TypedBookShop.class, typedShop.get());
+		assertThatExceptionOfType(Exception.class).isThrownBy(() -> typedBookshop.get());
+		assertThatExceptionOfType(Exception.class).isThrownBy(() -> typedBusiness.get());
+		assertThat(typedShop.get()).isInstanceOf(TypedBookShop.class);
 	}
 
 }
