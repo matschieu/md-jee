@@ -1,6 +1,8 @@
 package com.github.matschieu.jakartaee.cdi;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -60,38 +62,38 @@ class BuiltInQualifiersTest extends WeldTest {
 	@Test
 	void testInjectionWithDefaultQualifiersUsingAnnotations() {
 		// Qualifiers @Any and @Default are implicit and added by default to each bean
-		Assertions.assertInstanceOf(Bean.class, bean);
-		Assertions.assertInstanceOf(Bean.class, beanWithDefault);
-		Assertions.assertInstanceOf(Bean.class, beanWithAnyDefault);
+		assertThat(bean).isInstanceOf(Bean.class);
+		assertThat(beanWithDefault).isInstanceOf(Bean.class);
+		assertThat(beanWithAnyDefault).isInstanceOf(Bean.class);
 		// @Any and @Default are explicitly declared in the bean but are not necessary to inject it
-		Assertions.assertInstanceOf(AnyDefaultBean.class, anyDefaultBean);
+		assertThat(anyDefaultBean).isInstanceOf(AnyDefaultBean.class);
 	}
 
 	@Test
 	void testInjectionWithDefaultQualifiersUsingProgrammingLookup() {
 		// Qualifiers @Any and @Default are implicit and added by default to each bean
-		Assertions.assertInstanceOf(Bean.class, beanInstance.get());
-		Assertions.assertInstanceOf(Bean.class, beanWithDefaultInstance.get());
-		Assertions.assertInstanceOf(Bean.class, beanWithAnyDefaultInstance.get());
+		assertThat(beanInstance.get()).isInstanceOf(Bean.class);
+		assertThat(beanWithDefaultInstance.get()).isInstanceOf(Bean.class);
+		assertThat(beanWithAnyDefaultInstance.get()).isInstanceOf(Bean.class);
 		// @Any and @Default are explicitly declared in the bean but are not necessary to inject it
-		Assertions.assertInstanceOf(AnyDefaultBean.class, anyDefaultBeanInstance.get());
+		assertThat(anyDefaultBeanInstance.get()).isInstanceOf(AnyDefaultBean.class);
 	}
 
 	@Test
 	void testInjectionWithDefaultQualifiersUsingContainer() {
 		// Qualifiers @Any and @Default are implicit and added by default to each bean
-		Assertions.assertInstanceOf(Bean.class, weld.container().select(Bean.class).get());
-		Assertions.assertInstanceOf(Bean.class, weld.container().select(Bean.class, AnnotationUtils.toAnnotation(Default.class)).get());
-		Assertions.assertInstanceOf(Bean.class, weld.container().select(Bean.class, AnnotationUtils.toAnnotation(Any.class), AnnotationUtils.toAnnotation(Default.class)).get());
+		assertThat(weld.container().select(Bean.class).get()).isInstanceOf(Bean.class);
+		assertThat(weld.container().select(Bean.class, AnnotationUtils.toAnnotation(Default.class)).get()).isInstanceOf(Bean.class);
+		assertThat(weld.container().select(Bean.class, AnnotationUtils.toAnnotation(Any.class), AnnotationUtils.toAnnotation(Default.class)).get()).isInstanceOf(Bean.class);
 		// @Any and @Default are explicitly declared in the bean but are not necessary to inject it
-		Assertions.assertInstanceOf(AnyDefaultBean.class, weld.container().select(AnyDefaultBean.class).get());
+		assertThat(weld.container().select(AnyDefaultBean.class).get()).isInstanceOf(AnyDefaultBean.class);
 	}
 
 	@Test
 	void testInjectionWithName() {
-		Assertions.assertInstanceOf(NamedBean.class, namedBean);
+		assertThat(namedBean).isInstanceOf(NamedBean.class);
 		// If no name binds with the name defined at the injection point, then an exception is thrown when injecting
-		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> badNamedBeanInstance.get());
+		assertThatExceptionOfType(UnsatisfiedResolutionException.class).isThrownBy(() -> badNamedBeanInstance.get());
 	}
 
 }

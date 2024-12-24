@@ -1,6 +1,7 @@
 package com.github.matschieu.jakartaee.cdi;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -34,10 +35,10 @@ class QualifierTest extends WeldTest {
 
 	@Test
 	void testInjectionWithQualifier() {
-		Assertions.assertInstanceOf(SynchronousPaymentProcessor.class, syncPaymentProcessor);
-		Assertions.assertInstanceOf(AsynchronousPaymentProcessor.class, asyncPaymentProcessor);
-		Assertions.assertInstanceOf(SynchronousPaymentProcessor.class, reliablePaymentProcessor);
-		Assertions.assertInstanceOf(SynchronousPaymentProcessor.class, reliableSynchronousPaymentProcessor);
+		assertThat(syncPaymentProcessor).isInstanceOf(SynchronousPaymentProcessor.class);
+		assertThat(asyncPaymentProcessor).isInstanceOf(AsynchronousPaymentProcessor.class);
+		assertThat(reliablePaymentProcessor).isInstanceOf(SynchronousPaymentProcessor.class);
+		assertThat(reliableSynchronousPaymentProcessor).isInstanceOf(SynchronousPaymentProcessor.class);
 	}
 
 }

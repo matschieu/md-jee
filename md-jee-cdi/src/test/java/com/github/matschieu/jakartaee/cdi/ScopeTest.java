@@ -1,6 +1,7 @@
 package com.github.matschieu.jakartaee.cdi;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -25,19 +26,19 @@ class ScopeTest extends WeldTest {
 
 	@Test
 	void testDependentScoped() {
-		Assertions.assertNotNull(dependentBean1);
-		Assertions.assertNotNull(dependentBean2);
+		assertThat(dependentBean1).isNotNull();
+		assertThat(dependentBean2).isNotNull();
 		// dependent is the scope by default for any bean
 		// When injected, a new instance of the dependent beane is created
-		Assertions.assertNotEquals(dependentBean1, dependentBean2);
+		assertThat(dependentBean1).isNotEqualTo(dependentBean2);
 	}
 
 	@Test
 	void testApplicationScoped() {
-		Assertions.assertNotNull(appBean1);
-		Assertions.assertNotNull(appBean2);
+		assertThat(appBean1).isNotNull();
+		assertThat(appBean2).isNotNull();
 		// ApplicationScoped beans are instanciated once for the whole application
-		Assertions.assertEquals(appBean1, appBean2);
+		assertThat(appBean1).isEqualTo(appBean2);
 	}
 
 }

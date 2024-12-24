@@ -1,6 +1,7 @@
 package com.github.matschieu.jakartaee.cdi;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -32,12 +33,12 @@ class SpecializationTest extends WeldTest {
 	@Test
 	void testAlternative() {
 		// MockAsynchronous service because priority increased on the alternative with @Priority
-		Assertions.assertInstanceOf(MockAsynchronousService.class, service);
+		assertThat(service).isInstanceOf(MockAsynchronousService.class);
 		// AsynchronousService because qualifier @Asynchronous is only on the Default implementation
-		Assertions.assertInstanceOf(AsynchronousService.class, asyncService);
+		assertThat(asyncService).isInstanceOf(AsynchronousService.class);
 		// Both SpecializedService have the same type because of the use of the annotation @Specializes
 		// @Specializes guarantees that the second bean is never instantiated or called by the container, even if the second bean defines a producer or observer method
-		Assertions.assertInstanceOf(MockAsynchronousSpecializedService.class, specializedService);
-		Assertions.assertInstanceOf(MockAsynchronousSpecializedService.class, asyncSpecializedService);
+		assertThat(specializedService).isInstanceOf(MockAsynchronousSpecializedService.class);
+		assertThat(asyncSpecializedService).isInstanceOf(MockAsynchronousSpecializedService.class);
 	}
 }

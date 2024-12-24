@@ -1,5 +1,8 @@
 package com.github.matschieu.jakartaee.cdi;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -7,7 +10,6 @@ import java.util.TreeMap;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -62,26 +64,26 @@ class InjectionTest extends WeldTest {
 
 	@Test
 	void testInjectionUsingAnnotation() {
-		Assertions.assertInstanceOf(Bean.class, bean1);
-		Assertions.assertInstanceOf(Bean.class, bean2);
+		assertThat(bean1).isInstanceOf(Bean.class);
+		assertThat(bean2).isInstanceOf(Bean.class);
 		// Each injection of a bean create a new instance
-		Assertions.assertNotEquals(bean1, bean2);
-		Assertions.assertNotSame(bean1, bean2);
+		assertThat(bean1).isNotEqualTo(bean2);
+		assertThat(bean1).isNotSameAs(bean2);
 	}
 
 	@Test
 	void testInjectionUsingProgrammingLookup() {
-		Assertions.assertTrue(bean1Instance.isResolvable());
-		Assertions.assertTrue(bean2Instance.isResolvable());
+		assertThat(bean1Instance.isResolvable()).isTrue();
+		assertThat(bean2Instance.isResolvable()).isTrue();
 
 		final Bean bean1 = bean1Instance.get();
 		final Bean bean2 = bean2Instance.get();
 
-		Assertions.assertInstanceOf(Bean.class, bean1);
-		Assertions.assertInstanceOf(Bean.class, bean2);
+		assertThat(bean1).isInstanceOf(Bean.class);
+		assertThat(bean2).isInstanceOf(Bean.class);
 		// Each injection of a bean create a new instance
-		Assertions.assertNotEquals(bean1, bean2);
-		Assertions.assertNotSame(bean1, bean2);
+		assertThat(bean1).isNotEqualTo(bean2);
+		assertThat(bean1).isNotSameAs(bean2);
 	}
 
 	@Test
@@ -89,76 +91,76 @@ class InjectionTest extends WeldTest {
 		final Instance<Bean> bean1Instance = weld.container().select(Bean.class);
 		final Instance<Bean> bean2Instance = weld.container().select(Bean.class);
 
-		Assertions.assertTrue(bean1Instance.isResolvable());
-		Assertions.assertTrue(bean2Instance.isResolvable());
+		assertThat(bean1Instance.isResolvable()).isTrue();
+		assertThat(bean2Instance.isResolvable()).isTrue();
 
 		final Bean bean1 = bean1Instance.get();
 		final Bean bean2 = bean2Instance.get();
 
-		Assertions.assertInstanceOf(Bean.class, bean1);
-		Assertions.assertInstanceOf(Bean.class, bean2);
+		assertThat(bean1).isInstanceOf(Bean.class);
+		assertThat(bean2).isInstanceOf(Bean.class);
 		// Each injection of a bean create a new instance
-		Assertions.assertNotEquals(bean1, bean2);
-		Assertions.assertNotSame(bean1, bean2);
+		assertThat(bean1).isNotEqualTo(bean2);
+		assertThat(bean1).isNotSameAs(bean2);
 	}
 
 	@Test
 	void testSingletonInjection() {
-		Assertions.assertInstanceOf(SingletonBean.class, singletonBean1);
-		Assertions.assertInstanceOf(SingletonBean.class, singletonBean2);
+		assertThat(singletonBean1).isInstanceOf(SingletonBean.class);
+		assertThat(singletonBean2).isInstanceOf(SingletonBean.class);
 		// Because a Singleton has only one instance, the container inject the same instance of a Singleton
-		Assertions.assertEquals(singletonBean1, singletonBean2);
-		Assertions.assertSame(singletonBean1, singletonBean2);
+		assertThat(singletonBean1).isEqualTo(singletonBean2);
+		assertThat(singletonBean1).isSameAs(singletonBean2);
 	}
 
 	@Test
 	void AmbigousDependenciesTest() {
 		// Ambigous because object is the superclass of everything
-		Assertions.assertFalse(ambigousBean.isResolvable());
-		Assertions.assertTrue(ambigousBean.isAmbiguous());
+		assertThat(ambigousBean.isResolvable()).isFalse();
+		assertThat(ambigousBean.isAmbiguous()).isTrue();
 	}
 
 	@Test
 	void unsatisfiedDependenciesTest() {
 		// Unsatisfied because no bean has these both qualifiers
-		Assertions.assertFalse(weld.container().select(AnnotationUtils.toAnnotation(Asynchronous.class), AnnotationUtils.toAnnotation(Reliable.class)).isResolvable());
-		Assertions.assertTrue(weld.container().select(AnnotationUtils.toAnnotation(Asynchronous.class), AnnotationUtils.toAnnotation(Reliable.class)).isUnsatisfied());
+		assertThat(weld.container().select(AnnotationUtils.toAnnotation(Asynchronous.class), AnnotationUtils.toAnnotation(Reliable.class)).isResolvable()).isFalse();
+		assertThat(weld.container().select(AnnotationUtils.toAnnotation(Asynchronous.class), AnnotationUtils.toAnnotation(Reliable.class)).isUnsatisfied()).isTrue();
 	}
 
 	@Test
 	void testVetoedPackage() {
-		Assertions.assertFalse(CDI.current().select(VetoedClassA.class).isResolvable());
-		Assertions.assertFalse(CDI.current().select(VetoedClassB.class).isResolvable());
-		Assertions.assertFalse(CDI.current().select(VetoedClassC.class).isResolvable());
+		assertThat(CDI.current().select(VetoedClassA.class).isResolvable()).isFalse();
+		assertThat(CDI.current().select(VetoedClassB.class).isResolvable()).isFalse();
+		assertThat(CDI.current().select(VetoedClassC.class).isResolvable()).isFalse();
 
-		Assertions.assertTrue(CDI.current().select(VetoedClassA.class).isUnsatisfied());
-		Assertions.assertTrue(CDI.current().select(VetoedClassB.class).isUnsatisfied());
-		Assertions.assertTrue(CDI.current().select(VetoedClassC.class).isUnsatisfied());
+		assertThat(CDI.current().select(VetoedClassA.class).isUnsatisfied()).isTrue();
+		assertThat(CDI.current().select(VetoedClassB.class).isUnsatisfied()).isTrue();
+		assertThat(CDI.current().select(VetoedClassC.class).isUnsatisfied()).isTrue();
 
-		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> CDI.current().select(VetoedClassA.class).get());
-		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> CDI.current().select(VetoedClassB.class).get());
-		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> CDI.current().select(VetoedClassC.class).get());
+		assertThatExceptionOfType(UnsatisfiedResolutionException.class).isThrownBy(() -> CDI.current().select(VetoedClassA.class).get());
+		assertThatExceptionOfType(UnsatisfiedResolutionException.class).isThrownBy(() -> CDI.current().select(VetoedClassB.class).get());
+		assertThatExceptionOfType(UnsatisfiedResolutionException.class).isThrownBy(() -> CDI.current().select(VetoedClassC.class).get());
 	}
 
 	@Test
 	void testVetoedClass() {
 		// This injection is not ambigous due to the use of the Vetoed which exclude the package from the bean management by the container
-		Assertions.assertInstanceOf(NotVetoedBean.class, notVetoedBean);
-		Assertions.assertFalse(vetoedBean.isResolvable());
+		assertThat(notVetoedBean).isInstanceOf(NotVetoedBean.class);
+		assertThat(vetoedBean.isResolvable()).isFalse();
 		// Getting an exception when trying to inject a Vetoed bean
-		Assertions.assertThrows(UnsatisfiedResolutionException.class, () -> vetoedBean.get());
+		assertThatExceptionOfType(UnsatisfiedResolutionException.class).isThrownBy(() -> vetoedBean.get());
 	}
 
 	@Test
 	void testInitializers() {
 		// Default constructor is not called as there is another constructor annotated @Inject
-		Assertions.assertNull(initBean.getDefaultConstructorBean());
+		assertThat(initBean.getDefaultConstructorBean()).isNull();
 
-		Assertions.assertNotNull(initBean.getConstructorBean());
-		Assertions.assertNotNull(initBean.getField1Bean());
-		Assertions.assertNotNull(initBean.getField2Bean());
-		Assertions.assertNotNull(initBean.getMethod1Bean());
-		Assertions.assertNotNull(initBean.getMethod2Bean());
+		assertThat(initBean.getConstructorBean()).isNotNull();
+		assertThat(initBean.getField1Bean()).isNotNull();
+		assertThat(initBean.getField2Bean()).isNotNull();
+		assertThat(initBean.getMethod1Bean()).isNotNull();
+		assertThat(initBean.getMethod2Bean()).isNotNull();
 
 		final Map<Integer, String> injectionOrder = new TreeMap<>();
 		injectionOrder.put(initBean.getMethod2Bean().getInstanceNumber(), "METHOD2");
@@ -173,12 +175,12 @@ class InjectionTest extends WeldTest {
 
 		// Order of injection of fields or methods by the container is not guaranteed
 		// But it is always starts with the constructor, then the fields and at the ends the methods
-		Assertions.assertEquals(5, values.size());
-		Assertions.assertEquals("CONSTRUCTOR", values.get(0));
-		Assertions.assertEquals("FIELD", values.get(1).substring(0, values.get(1).length() - 1));
-		Assertions.assertEquals("FIELD", values.get(2).substring(0, values.get(2).length() - 1));
-		Assertions.assertEquals("METHOD", values.get(3).substring(0, values.get(3).length() - 1));
-		Assertions.assertEquals("METHOD", values.get(4).substring(0, values.get(4).length() - 1));
+		assertThat(values.size()).isEqualTo(5);
+		assertThat(values.get(0)).isEqualTo("CONSTRUCTOR");
+		assertThat(values.get(1).substring(0, values.get(1).length() - 1)).isEqualTo("FIELD");
+		assertThat(values.get(2).substring(0, values.get(2).length() - 1)).isEqualTo("FIELD");
+		assertThat(values.get(3).substring(0, values.get(3).length() - 1)).isEqualTo("METHOD");
+		assertThat(values.get(4).substring(0, values.get(4).length() - 1)).isEqualTo("METHOD");
 	}
 
 	@Test
@@ -190,10 +192,10 @@ class InjectionTest extends WeldTest {
 		final SingletonBean singletonBean2 = container2.select(SingletonBean.class).get();
 
 		// A singleton is a unique instance, so 2 instances of a singleton inside the same container are equals
-		Assertions.assertSame(singletonBean1, container1.select(SingletonBean.class).get());
-		Assertions.assertSame(singletonBean2, container2.select(SingletonBean.class).get());
+		assertThat(singletonBean1).isSameAs(container1.select(SingletonBean.class).get());
+		assertThat(singletonBean2).isSameAs(container2.select(SingletonBean.class).get());
 		// But 2 instances of a singleton from both container are not equals
-		Assertions.assertNotSame(singletonBean1, singletonBean2);
+		assertThat(singletonBean1).isNotSameAs(singletonBean2);
 
 		container1.shutdown();
 		container2.shutdown();

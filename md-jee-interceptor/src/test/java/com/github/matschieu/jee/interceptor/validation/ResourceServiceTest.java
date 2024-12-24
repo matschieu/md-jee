@@ -1,11 +1,12 @@
 package com.github.matschieu.jee.interceptor.validation;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import org.jboss.weld.junit5.EnableWeld;
 import org.jboss.weld.junit5.WeldInitiator;
 import org.jboss.weld.junit5.WeldSetup;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import jakarta.inject.Inject;
@@ -21,77 +22,34 @@ class ResourceServiceTest {
 
 	@Test
 	void testMyServiceCreateResource1() {
-		try {
-			this.resourceService.createResource(null, "", "");
-			fail();
-		} catch (final Exception e) {
-			Assertions.assertEquals(NullElementException.class, e.getClass());
-			Assertions.assertEquals("arg0 is null", e.getMessage());
-		}
-
-		try {
-			this.resourceService.createResource("", null, "");
-			fail();
-		} catch (final Exception e) {
-			Assertions.assertEquals(NullElementException.class, e.getClass());
-			Assertions.assertEquals("arg1 is null", e.getMessage());
-		}
-
-		this.resourceService.createResource("", "", null);
+		assertThatExceptionOfType(NullElementException.class).isThrownBy(() -> this.resourceService.createResource(null, "", "")).withMessage("arg0 is null");
+		assertThatExceptionOfType(NullElementException.class).isThrownBy(() -> this.resourceService.createResource("", null, "")).withMessage("arg1 is null");
+		assertThatNoException().isThrownBy(() -> this.resourceService.createResource("", "", null));
 	}
 
 	@Test
 	void testMyServiceCreateResource2() {
-		try {
-			this.resourceService.createResource(new Resource(null, "", ""));
-			fail();
-		} catch (final Exception e) {
-			Assertions.assertEquals(NullElementException.class, e.getClass());
-			Assertions.assertEquals("name is null", e.getMessage());
-		}
-
-		try {
-			this.resourceService.createResource(new Resource("", null, ""));
-			fail();
-		} catch (final Exception e) {
-			Assertions.assertEquals(NullElementException.class, e.getClass());
-			Assertions.assertEquals("type is null", e.getMessage());
-		}
-
-		this.resourceService.createResource(new Resource("", "", null));
+		assertThatExceptionOfType(NullElementException.class).isThrownBy(() -> this.resourceService.createResource(new Resource(null, "", ""))).withMessage("name is null");
+		assertThatExceptionOfType(NullElementException.class).isThrownBy(() -> this.resourceService.createResource(new Resource("", null, ""))).withMessage("type is null");
+		assertThatNoException().isThrownBy(() -> this.resourceService.createResource("", "", null));
 	}
 
 	@Test
 	void testMyServiceGetResource() {
-		Resource resource;
+		assertThatExceptionOfType(NullElementException.class).isThrownBy(() -> this.resourceService.getResource(null)).withMessage("arg0 is null");
 
-		try {
-			resource = this.resourceService.getResource(null);
-			fail();
-		} catch (final Exception e) {
-			Assertions.assertEquals(NullElementException.class, e.getClass());
-			Assertions.assertEquals("arg0 is null", e.getMessage());
-		}
+		Resource resource = this.resourceService.getResource("name");
 
-		resource = this.resourceService.getResource("name");
-
-		Assertions.assertNotNull(resource);
-		Assertions.assertEquals("name", resource.getName());
-		Assertions.assertEquals("type", resource.getType());
-		Assertions.assertEquals("description", resource.getDescription());
+		assertThat(resource).isNotNull();
+		assertThat(resource.getName()).isEqualTo("name");
+		assertThat(resource.getType()).isEqualTo("type");
+		assertThat(resource.getDescription()).isEqualTo("description");
 	}
 
 	@Test
 	void testMyServiceDeleteResource() {
-		try {
-			this.resourceService.deleteResource(null);
-			fail();
-		} catch (final Exception e) {
-			Assertions.assertEquals(NullElementException.class, e.getClass());
-			Assertions.assertEquals("arg0 is null", e.getMessage());
-		}
-
-		this.resourceService.getResource("name");
+		assertThatExceptionOfType(NullElementException.class).isThrownBy(() -> this.resourceService.deleteResource(null)).withMessage("arg0 is null");
+		assertThatNoException().isThrownBy(() -> this.resourceService.getResource("name"));
 	}
 
 }

@@ -1,9 +1,10 @@
 package com.github.matschieu.jakartaee.cdi;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.github.matschieu.WeldTest;
@@ -23,11 +24,11 @@ class AsynchronousTest extends WeldTest {
 
 		Thread.sleep(100);
 
-		Assertions.assertTrue(future2.isDone());
-		Assertions.assertFalse(future1.isDone());
+		assertThat(future2.isDone()).isTrue();
+		assertThat(future1.isDone()).isFalse();
 
-		Assertions.assertTrue(future2.get());
-		Assertions.assertTrue(future1.get());
+		assertThat(future2.get()).isTrue();
+		assertThat(future1.get()).isTrue();
 	}
 
 }
