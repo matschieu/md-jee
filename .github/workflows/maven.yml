@@ -3,6 +3,10 @@
 
 name: Java CI with Maven
 
+permissions:
+  actions: read
+  contents: read
+
 on:
   push:
     branches: [ main ]
@@ -11,7 +15,7 @@ on:
   schedule:
     - cron: '0 20 * * *'
 
-jobs:
+jobs:	
   build:
 
     runs-on: ubuntu-latest
