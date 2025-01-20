@@ -13,7 +13,7 @@ import jakarta.inject.Inject;
 class MyServiceTest {
 
 	@WeldSetup
-	public WeldInitiator weld = WeldInitiator.from(MyService.class, MyServiceImpl.class).build();
+	public WeldInitiator weld = WeldInitiator.of(WeldInitiator.createWeld().enableDiscovery());
 
 	@Inject
 	private MyService myService;

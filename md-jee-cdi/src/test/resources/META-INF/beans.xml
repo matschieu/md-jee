@@ -1,0 +1,10 @@
+<beans xmlns="https://jakarta.ee/xml/ns/jakartaee" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/beans_4_0.xsd" 
+       bean-discovery-mode="all">
+	<interceptors>
+		<!-- The order of declaration is the order of execution -->
+		<class>com.github.matschieu.jakartaee.cdi.interceptor.BeanLoggingInterceptor</class>
+		<class>com.github.matschieu.jakartaee.cdi.interceptor.BeanTimerInterceptor</class>
+	</interceptors>
+</beans>

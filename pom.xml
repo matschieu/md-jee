@@ -27,11 +27,10 @@
 		<jakartaee.version>10.0.0</jakartaee.version>
 		<hibernate.version>8.0.1.Final</hibernate.version>
 		<expressly.version>6.0.0-M1</expressly.version>
-		<weld.version>5.1.0.Final</weld.version>
-		<weld-se.version>2.4.8.Final</weld-se.version>
-		<weld-junit5.version>4.0.0.Final</weld-junit5.version>
-		<junit.version>5.8.1</junit.version>
-		<assertj.version>3.27.0</assertj.version>
+		<weld-se.version>4.0.3.Final</weld-se.version>
+		<weld-junit5.version>4.0.3.Final</weld-junit5.version>
+		<junit.version>5.12.2</junit.version> <!-- Higher version doesn't work, all tests are failing with "failed to close extension context" -->
+		<assertj.version>3.27.3</assertj.version>
 		<mockito.version>5.14.2</mockito.version>
 		<jersey.version>3.1.9</jersey.version>
 		<jaxb.version>4.0.5</jaxb.version>
@@ -69,13 +68,6 @@
 				<scope>provided</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>org.jboss.weld</groupId>
-				<artifactId>weld-core-impl</artifactId>
-				<version>${weld.version}</version>
-				<scope>provided</scope>
-			</dependency>
-
 			<!-- Test dependencies -->
 
 			<dependency>
@@ -88,6 +80,13 @@
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
@@ -162,7 +161,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
+				<version>3.5.5</version>
 			</plugin>
 		</plugins>
 	</build>

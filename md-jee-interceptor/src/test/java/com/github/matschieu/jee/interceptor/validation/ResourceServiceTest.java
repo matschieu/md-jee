@@ -15,7 +15,7 @@ import jakarta.inject.Inject;
 class ResourceServiceTest {
 
 	@WeldSetup
-	public WeldInitiator weld = WeldInitiator.from(ResourceService.class, ResourceServiceImpl.class).build();
+	public WeldInitiator weld = WeldInitiator.of(WeldInitiator.createWeld().enableDiscovery());
 
 	@Inject
 	private ResourceService resourceService;
