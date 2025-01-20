@@ -41,6 +41,8 @@ class StackTraceTest {
 				stLastLine = sc.nextLine();
 			}
 
+			sc.close();
+
 			Assertions.assertNotNull(stLastLine);
 			Assertions.assertEquals("at com.github.matschieu.java.test.api.VirtualClass.virtualMethod(VirtualClass.class:1317)", stLastLine.trim());
 		}
